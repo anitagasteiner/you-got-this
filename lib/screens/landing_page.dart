@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../common/colors.dart';
 import '../tasks.dart';
 import '../calc.dart';
-import 'app_bar.dart';
+import 'navbars.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -85,6 +85,7 @@ class LandingPage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const AppBarBottom(),
     );
   }
 }
