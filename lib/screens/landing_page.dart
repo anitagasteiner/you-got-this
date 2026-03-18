@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../common/colors.dart';
-import '../tasks.dart';
+import '../data/tasks.dart';
 import '../calc.dart';
 import 'navbars.dart';
 

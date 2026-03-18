@@ -3,8 +3,6 @@ import '../common/colors.dart';
 import '../common/painting.dart';
 
 
-const IconData copyright = IconData(0xe198, fontFamily: 'MaterialIcons');
-
 class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
   const AppBarTop ({super.key});
 
@@ -64,7 +62,7 @@ class AppBarBottom extends StatelessWidget {
                 ),
             ],
           ),
-        ),             
+        ),
       );
   }
 
