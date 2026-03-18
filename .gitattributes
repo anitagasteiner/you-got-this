@@ -1,0 +1,8 @@
+# Ignoriere native Plattform-Ordner bei GitHub-Sprachanalyse
+android/** linguist-language=Ignore
+ios/** linguist-language=Ignore
+linux/** linguist-language=Ignore
+macos/** linguist-language=Ignore
+windows/** linguist-language=Ignore
+build/** linguist-language=Ignore
+.dart_tool/** linguist-language=Ignore
