@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'navbars.dart';
-import '../data/tasks.dart';
+import '../data/tasks_data.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
