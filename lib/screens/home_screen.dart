@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../common/colors.dart';
 import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
+import '../widgets/color_box_link_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -30,47 +31,47 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [              
-                ColoredBox(
+              children: [
+                ColorBoxLink(
                   color: ScaleColors.toDo,
-                  child: SizedBox(
-                    width: 50,
-                    height: 35,
-                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/tasks');
+                  },
                 ),
-                ColoredBox(
+                ColorBoxLink(
                   color: ScaleColors.toDoSoon,
-                  child: SizedBox(
-                    width: 50,
-                    height: 35,
-                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/tasks');
+                  },
                 ),
-                ColoredBox(
+                ColorBoxLink(
                   color: ScaleColors.stillFine,
-                  child: SizedBox(
-                    width: 50,
-                    height: 35,
-                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/tasks');
+                  },
                 ),
-                ColoredBox(
+                ColorBoxLink(
                   color: ScaleColors.doneRecently,
-                  child: SizedBox(
-                    width: 50,
-                    height: 35,
-                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/tasks');
+                  },
                 ),
-                ColoredBox(
+                ColorBoxLink(
                   color: ScaleColors.done,
-                  child: SizedBox(
-                    width: 50,
-                    height: 35,
-                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/tasks');
+                  },
                 ),
               ],
             ),
+            SizedBox(height: 5),
+            Text(
+              'Klicke einfach auf ein farbiges Feld und du gelangst zu den Tasks der entsprechenden Kategorie.',
+              textAlign: TextAlign.center,
+            ),
             SizedBox(height: 25),
             ElevatedButton(
-              child: Text('Details'),
+              child: Text('Show all Tasks'),
               onPressed: () {
                 Navigator.pushNamed(context, '/tasks');
               },
