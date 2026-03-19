@@ -7,7 +7,9 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final category = ModalRoute.of(context)?.settings.arguments;
+
     return Scaffold(
       appBar: const AppBarTop(),
       body: Padding(
@@ -20,13 +22,16 @@ class TasksScreen extends StatelessWidget {
             SizedBox(
               height: 200,
               child: ListView(
-                children: tasks.values.map((task) {
-                  return ListTile(
-                    leading: const Icon(Icons.check_box_outline_blank),
-                    title: Text(task.name),
-                    subtitle: Text('Alle ${task.recurrence} Tage'),
-                  );
-                }).toList(),
+                children: tasks.values
+                  .where((task) => task.category == category)
+                  .map((task) {
+                    return ListTile(
+                      leading: const Icon(Icons.check_box_outline_blank),
+                      title: Text(task.name),
+                      subtitle: Text('Alle ${task.recurrence} Tage'),
+                    );
+                  })
+                  .toList(),
               ),
             ),
             Row(
@@ -49,5 +54,7 @@ class TasksScreen extends StatelessWidget {
       ),
       bottomNavigationBar: const AppBarBottom(),
     );
+    
   }
+
 }
