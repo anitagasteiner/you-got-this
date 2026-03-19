@@ -3,8 +3,8 @@ import '../common/colors.dart';
 import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
