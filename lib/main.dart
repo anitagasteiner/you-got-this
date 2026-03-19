@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/landing_page.dart';
-import 'screens/details.dart';
+import 'screens/tasks.dart';
 
 void main() {
   runApp(MainApp());
@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LandingPage(),
-        '/details': (context) => DetailsScreen(),
+        '/tasks': (context) => TasksScreen(),
       },
       title: 'You got this!',
       theme: ThemeData(fontFamily: 'Montserrat'),

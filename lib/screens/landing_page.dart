@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../common/colors.dart';
-import '../data/tasks.dart';
 import '../calc.dart';
 import 'navbars.dart';
 
@@ -23,7 +22,7 @@ class LandingPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Die Berechnung ergibt:'),
+                Text('Die Test-Berechnung ergibt:'),
                 SizedBox(width: 5),
                 Text(calculate(3).toString()),
               ],
@@ -70,22 +69,10 @@ class LandingPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 25),
-            SizedBox(
-              height: 200,
-              child: ListView(
-                children: tasks.values.map((task) {
-                  return ListTile(
-                    leading: const Icon(Icons.check_box_outline_blank),
-                    title: Text(task.name),
-                    subtitle: Text('Alle ${task.recurrence} Tage'),
-                  );
-                }).toList(),
-              ),
-            ),
             ElevatedButton(
               child: Text('Details'),
               onPressed: () {
-                Navigator.pushNamed(context, '/details');
+                Navigator.pushNamed(context, '/tasks');
               },
             ),
           ],
