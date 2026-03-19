@@ -35,32 +35,57 @@ class HomeScreen extends StatelessWidget {
                 ColorBoxLink(
                   color: ScaleColors.toDo,
                   onTap: () {
-                    Navigator.pushNamed(context, '/tasks');
+                    Navigator.pushNamed(
+                      context,
+                      '/tasks',
+                      arguments: 'toDo',
+                    );
                   },
+                  // category: 'toDo',
                 ),
                 ColorBoxLink(
                   color: ScaleColors.toDoSoon,
                   onTap: () {
-                    Navigator.pushNamed(context, '/tasks');
+                    Navigator.pushNamed(
+                      context,
+                      '/tasks',
+                      arguments: 'toDoSoon',
+                    );
                   },
+                  // category: 'toDoSoon',
                 ),
                 ColorBoxLink(
                   color: ScaleColors.stillFine,
                   onTap: () {
-                    Navigator.pushNamed(context, '/tasks');
+                    Navigator.pushNamed(
+                      context,
+                      '/tasks',
+                      arguments: 'stillFine',
+                    );
                   },
+                  // category: 'stillFine',
                 ),
                 ColorBoxLink(
                   color: ScaleColors.doneRecently,
                   onTap: () {
-                    Navigator.pushNamed(context, '/tasks');
+                    Navigator.pushNamed(
+                      context,
+                      '/tasks',
+                      arguments: 'doneRecently',
+                    );
                   },
+                  // category: 'doneRecently',
                 ),
                 ColorBoxLink(
                   color: ScaleColors.done,
                   onTap: () {
-                    Navigator.pushNamed(context, '/tasks');
+                    Navigator.pushNamed(
+                      context,
+                      '/tasks',
+                      arguments: 'done',
+                    );
                   },
+                  // category: 'done',
                 ),
               ],
             ),

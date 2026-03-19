@@ -7,6 +7,7 @@ class TasksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final category = ModalRoute.of(context)?.settings.arguments;
     return Scaffold(
       appBar: const AppBarTop(),
       body: Padding(
@@ -14,7 +15,7 @@ class TasksScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 5),
-            Text('Tasks der Kategorie XXX'),
+            Text('Tasks der Kategorie $category'),
             SizedBox(height: 5),
             SizedBox(
               height: 200,
