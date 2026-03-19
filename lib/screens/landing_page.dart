@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../common/colors.dart';
 import '../calc.dart';
-import 'navbars.dart';
+import '../widgets/navbars_widgets.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});

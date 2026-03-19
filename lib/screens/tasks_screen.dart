@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'navbars.dart';
+import '../widgets/navbars_widgets.dart';
 import '../data/tasks_data.dart';
 
 class TasksScreen extends StatelessWidget {
