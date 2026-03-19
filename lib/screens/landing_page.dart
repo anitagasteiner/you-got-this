@@ -11,11 +11,11 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarTop(),
-      body: Padding( // Center(child: LandingPage()),
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(height: 5), // für Abstand zwischen Elementen
+            SizedBox(height: 5),
             Text(greet()),
             SizedBox(height: 25),
             Text('Das ist die Task-Übersicht von ${fullName()}.'),
@@ -81,6 +81,12 @@ class LandingPage extends StatelessWidget {
                   );
                 }).toList(),
               ),
+            ),
+            ElevatedButton(
+              child: Text('Details'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/details');
+              },
             ),
           ],
         ),
