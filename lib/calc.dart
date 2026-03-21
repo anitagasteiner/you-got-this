@@ -11,13 +11,13 @@ String greet() {
   return 'Hallo, $firstName!';
 }
 
-int calculate(int inputValue) {
-  int result = inputValue * 2;
-  return result;
-}
-
 int countByCategory(String category) {
   return tasks.values
     .where((task) => task.category == category)
     .length;
+}
+
+double getWidth(String category) {
+  int tasksAmount = tasks.values.length;
+  return 250/tasksAmount*countByCategory(category);
 }

@@ -20,16 +20,10 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 5),
             Text(greet()),
             SizedBox(height: 25),
-            Text('Das ist die Task-Übersicht von ${fullName()}.'),
-            SizedBox(height: 25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Die Test-Berechnung ergibt:'),
-                SizedBox(width: 5),
-                Text(calculate(3).toString()),
-              ],
-            ),
+            Text(
+              'Das ist die Task-Übersicht von ${fullName()}.',
+              textAlign: TextAlign.center,              
+              ),
             SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -43,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                       arguments: 'To Do',
                     );
                   },
-                  // category: 'toDo',
+                  category: 'To Do',
                 ),
                 ColorBoxLink(
                   color: ScaleColors.toDoSoon,
@@ -54,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                       arguments: 'To Do Soon',
                     );
                   },
-                  // category: 'toDoSoon',
+                  category: 'To Do Soon',
                 ),
                 ColorBoxLink(
                   color: ScaleColors.stillFine,
@@ -65,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                       arguments: 'Still Fine',
                     );
                   },
-                  // category: 'stillFine',
+                  category: 'Still Fine',
                 ),
                 ColorBoxLink(
                   color: ScaleColors.doneRecently,
@@ -76,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                       arguments: 'Done Recently',
                     );
                   },
-                  // category: 'doneRecently',
+                  category: 'Done Recently',
                 ),
                 ColorBoxLink(
                   color: ScaleColors.done,
@@ -87,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                       arguments: 'Done',
                     );
                   },
-                  // category: 'done',
+                  category: 'Done',
                 ),
               ],
             ),
