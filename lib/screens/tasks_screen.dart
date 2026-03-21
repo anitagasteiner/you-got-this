@@ -81,6 +81,3 @@ class TasksScreen extends StatelessWidget {
   }
 
 }
-
-
-//TODO Funktion getColors() -> category in color-bezeichnung umwandeln und oben einsetzen :)
