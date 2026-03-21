@@ -17,21 +17,44 @@ class TasksScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 5),
-            Text('Tasks der Kategorie $category'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  category == 'All'
+                    ? 'Alle Tasks'
+                    : 'Tasks der Kategorie ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                if (category != 'All')
+                  Text(
+                    '$category',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 18,
+                      color: Colors.green,
+                    ),
+                  ),
+              ],              
+            ),            
             SizedBox(height: 5),
             SizedBox(
               height: 200,
               child: ListView(
-                children: tasks.values
-                  .where((task) => task.category == category)
-                  .map((task) {
-                    return ListTile(
-                      leading: const Icon(Icons.check_box_outline_blank),
-                      title: Text(task.name),
-                      subtitle: Text('Alle ${task.recurrence} Tage'),
-                    );
-                  })
-                  .toList(),
+                children: (category == 'All'
+                  ? tasks.values
+                  : tasks.values.where((task) => task.category == category))
+                .map((task) {
+                  return ListTile(
+                    leading: const Icon(Icons.check_box_outline_blank),
+                    title: Text(task.name),
+                    subtitle: Text('Alle ${task.recurrence} Tage'),
+                  );
+                }).toList(),
               ),
             ),
             Row(
@@ -58,3 +81,6 @@ class TasksScreen extends StatelessWidget {
   }
 
 }
+
+
+//TODO Funktion getColors() -> category in color-bezeichnung umwandeln und oben einsetzen :)

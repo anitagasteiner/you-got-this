@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       '/tasks',
-                      arguments: 'toDo',
+                      arguments: 'To Do',
                     );
                   },
                   // category: 'toDo',
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       '/tasks',
-                      arguments: 'toDoSoon',
+                      arguments: 'To Do Soon',
                     );
                   },
                   // category: 'toDoSoon',
@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       '/tasks',
-                      arguments: 'stillFine',
+                      arguments: 'Still Fine',
                     );
                   },
                   // category: 'stillFine',
@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       '/tasks',
-                      arguments: 'doneRecently',
+                      arguments: 'Done Recently',
                     );
                   },
                   // category: 'doneRecently',
@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       '/tasks',
-                      arguments: 'done',
+                      arguments: 'Done',
                     );
                   },
                   // category: 'done',
@@ -98,7 +98,10 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               child: Text('Show all Tasks'),
               onPressed: () {
-                Navigator.pushNamed(context, '/tasks');
+                Navigator.pushNamed(
+                  context,
+                  '/tasks',
+                  arguments: 'All');
               },
             ),
           ],
