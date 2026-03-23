@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppBarColors {
-  static final background = Colors.teal[200]!;
-  static final shadow = Colors.teal;
+  static final background = Colors.lightGreen[400]!;
+  static final shadow = Colors.green[400];
   static final circle = Colors.yellow[400]!;
 }
 
