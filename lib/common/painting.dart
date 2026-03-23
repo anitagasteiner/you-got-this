@@ -20,3 +20,4 @@ class MyPainting extends CustomPainter {
     return false;
   }
 }
+
