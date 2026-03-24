@@ -3,23 +3,37 @@ import 'package:fl_chart/fl_chart.dart';
 import '../common/colors.dart';
 
 
-// class ScaleColors {
-//   static final toDo = Colors.red[400]!;
-//   static final toDoSoon = Colors.orange[400]!;
-//   static final stillFine = Colors.yellow[400]!;
-//   static final doneRecently = Colors.lightGreen[400]!;
-//   static final done = Colors.green[400]!;
-// }
+class OverviewPieChartSection extends StatelessWidget {
+  final Color color;
+  final VoidCallback onTap;
+  final String category;
 
+  const OverviewPieChartSection({
+    super.key,
+    required this.color,
+    required this.onTap,
+    required this.category,
+  });
 
-class SimplePieChart extends StatelessWidget {
-  const SimplePieChart({super.key});
+PieChartSectionData buildSection() {
+  return PieChartSectionData(
+    value: 30,
+    color: color,
+    title: category,
+    radius: 110,
+    titleStyle: const TextStyle(
+      // color: Colors.white,
+      fontSize: 14,
+      // fontWeight: FontWeight.bold,
+    ),
+    titlePositionPercentageOffset: 0.7,
+  );
+}
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 250,
-      // width: 500,
       child: PieChart(
         PieChartData(
           centerSpaceRadius: 0,
@@ -29,61 +43,61 @@ class SimplePieChart extends StatelessWidget {
               value: 30,
               color: ScaleColors.toDo,
               title: 'To Do',
-              radius: 90,
+              radius: 110,
               titleStyle: const TextStyle(
                 // color: Colors.white,
                 fontSize: 14,
                 // fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.8,
+              titlePositionPercentageOffset: 0.7,
             ),
             PieChartSectionData(
               value: 30,
               color: ScaleColors.toDoSoon,
               title: 'To Do \n Soon',
-              radius: 90,
+              radius: 110,
               titleStyle: const TextStyle(
                 // color: Colors.white,
                 fontSize: 14,
                 // fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.8,
+              titlePositionPercentageOffset: 0.7,
             ),
             PieChartSectionData(
               value: 20,
               color: ScaleColors.stillFine,
               title: 'Still \n Fine',
-              radius: 90,
+              radius: 110,
               titleStyle: const TextStyle(
                 // color: Colors.black,
                 fontSize: 14,
                 // fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.8,
+              titlePositionPercentageOffset: 0.7,
             ),
             PieChartSectionData(
               value: 10,
               color: ScaleColors.doneRecently,
               title: 'Done \n Recently',
-              radius: 90,
+              radius: 110,
               titleStyle: const TextStyle(
                 // color: Colors.black,
                 fontSize: 14,
                 // fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.8,
+              titlePositionPercentageOffset: 0.7,
             ),
             PieChartSectionData(
               value: 10,
               color: ScaleColors.done,
               title: 'Done',
-              radius: 90,
+              radius: 110,
               titleStyle: const TextStyle(
                 // color: Colors.white,
                 fontSize: 14,
                 // fontWeight: FontWeight.bold,
               ),
-              titlePositionPercentageOffset: 0.8,
+              titlePositionPercentageOffset: 0.7,
             ),
           ],
         ),
@@ -92,3 +106,4 @@ class SimplePieChart extends StatelessWidget {
   }
 
 }
+

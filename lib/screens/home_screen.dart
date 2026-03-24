@@ -3,7 +3,7 @@ import '../common/colors.dart';
 import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/color_box_link_widget.dart';
-import '../widgets/circle_chart_widget.dart';
+import '../widgets/pie_chart_widget.dart';
 
 
 int count = 0;
@@ -103,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                   arguments: 'All');
               },
             ),
-            SimplePieChart(),            
+            OverviewPieChart(),
           ],
         ),
       ),
