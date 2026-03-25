@@ -3,6 +3,15 @@ import 'package:fl_chart/fl_chart.dart';
 import '../common/colors.dart';
 
 
+final categories = [
+  'done',
+  'doneRecently',
+  'stillFine',
+  'toDoSoon',
+  'toDo',
+];
+
+
 class OverviewPieChart extends StatefulWidget {
   const OverviewPieChart({super.key,});
 
@@ -10,13 +19,13 @@ class OverviewPieChart extends StatefulWidget {
   State<StatefulWidget> createState() => PieChartState();
 }
 
-class PieChartState extends State {
-  int touchedIndex = -1;
+class PieChartState extends State<OverviewPieChart> {
+  // int touchedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 0.9,
+      aspectRatio: 0.8,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
@@ -29,22 +38,25 @@ class PieChartState extends State {
                 PieChartData(
                   pieTouchData: PieTouchData(
                     touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                      setState(() {
-                        if (!event.isInterestedForInteractions ||
-                          pieTouchResponse == null ||
-                          pieTouchResponse.touchedSection == null) {
-                            touchedIndex = -1;
-                            return;
-                          }
-                        touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
-                      });
-                    }
+                      if (!event.isInterestedForInteractions ||
+                        pieTouchResponse == null ||
+                        pieTouchResponse.touchedSection == null) {
+                          // touchedIndex = -1;
+                          return;
+                        }
+                      final index = pieTouchResponse
+                        .touchedSection!
+                        .touchedSectionIndex;
+                      final category = categories[index];
+                      handleSectionTap(context, category);
+                      // touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                    },
                   ),
                   borderData: FlBorderData(
                     show: false,
                   ),
                   sectionsSpace: 0,
-                  centerSpaceRadius: 40,
+                  centerSpaceRadius: 20,
                   sections: showingSections(),
                 ),
               ),
@@ -103,58 +115,72 @@ class PieChartState extends State {
   }
 
   List<PieChartSectionData> showingSections() {
-    return List.generate(4, (i) {
-      final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? 25.0 : 16.0;
-      final radius = isTouched ? 60.0 : 50.0;
-      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+    return List.generate(5, (i) {
+      // final isTouched = i == touchedIndex;
+      // final fontSize = isTouched ? 25.0 : 16.0;
+      final radius = 90.0;
+      // final radius = isTouched ? 60.0 : 50.0;
+      // const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
       return switch (i) {
         0 => PieChartSectionData(
           color: ScaleColors.done,
-          value: 40,
-          title: '40 %',
+          value: 30,
+          title: 'Done',
           radius: radius,
+          // double: 10,
           titleStyle: TextStyle(
-            fontSize: fontSize,
+            // fontSize: fontSize,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
-            shadows: shadows,
+            color: BaseColors.dark,
+            // shadows: shadows,
           ),
         ),
         1 => PieChartSectionData(
           color: ScaleColors.doneRecently,
           value: 30,
-          title: '30%',
+          title: 'Done Recently',
           radius: radius,
           titleStyle: TextStyle(
-            fontSize: fontSize,
+            // fontSize: fontSize,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
-            shadows: shadows,
+            color: BaseColors.dark,
+            // shadows: shadows,
           ),
         ),
         2 => PieChartSectionData(
           color: ScaleColors.stillFine,
           value: 15,
-          title: '15%',
+          title: 'Still Fine',
           radius: radius,
           titleStyle: TextStyle(
-            fontSize: fontSize,
+            // fontSize: fontSize,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
-            shadows: shadows,
+            color: BaseColors.dark,
+            // shadows: shadows,
           ),
         ),
         3 => PieChartSectionData(
-          color: ScaleColors.toDo,
+          color: ScaleColors.toDoSoon,
           value: 15,
-          title: '15%',
+          title: 'To Do Soon',
           radius: radius,
           titleStyle: TextStyle(
-            fontSize: fontSize,
+            // fontSize: fontSize,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
-            shadows: shadows,
+            color: BaseColors.dark,
+            // shadows: shadows,
+          ),
+        ),
+        4 => PieChartSectionData(
+          color: ScaleColors.toDo,
+          value: 10,
+          title: 'To Do',
+          radius: radius,
+          titleStyle: TextStyle(
+            // fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+            color: BaseColors.dark,
+            // shadows: shadows,
           ),
         ),
         _ => throw StateError('Invalid'),
@@ -194,4 +220,8 @@ class Indicator extends StatelessWidget {
       ],
     );
   }
+}
+
+void handleSectionTap(BuildContext context, String category) {
+  Navigator.pushNamed(context, '/$category');
 }

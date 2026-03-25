@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import '../common/colors.dart';
 import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
-import '../widgets/color_box_link_widget.dart';
-import '../widgets/pie_chart_widget.dart';
+// import '../widgets/color_box_link_widget.dart';
+// import '../widgets/pie_chart_widget.dart';
 import '../widgets/button_widget.dart';
+import '../widgets/stacked_bar_widget.dart';
 
 
-int count = 0;
+// int count = 0;
 
 
 class HomeScreen extends StatelessWidget {
@@ -34,69 +35,10 @@ class HomeScreen extends StatelessWidget {
               ),
             SizedBox(height: 10),
             // Colored Bar:
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ColorBoxLink(
-                  color: ScaleColors.toDo,
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/tasks',
-                      arguments: 'To Do',
-                    );
-                  },
-                  category: 'To Do',
-                ),
-                ColorBoxLink(
-                  color: ScaleColors.toDoSoon,
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/tasks',
-                      arguments: 'To Do Soon',
-                    );
-                  },
-                  category: 'To Do Soon',
-                ),
-                ColorBoxLink(
-                  color: ScaleColors.stillFine,
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/tasks',
-                      arguments: 'Still Fine',
-                    );
-                  },
-                  category: 'Still Fine',
-                ),
-                ColorBoxLink(
-                  color: ScaleColors.doneRecently,
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/tasks',
-                      arguments: 'Done Recently',
-                    );
-                  },
-                  category: 'Done Recently',
-                ),
-                ColorBoxLink(
-                  color: ScaleColors.done,
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/tasks',
-                      arguments: 'Done',
-                    );
-                  },
-                  category: 'Done',
-                ),
-              ],
-            ),
+            StackedBar(),
             // End of Colored Bar
             // Pie Chart:
-            OverviewPieChart(),
+            // OverviewPieChart(),
             // End of Pie Chart
             SizedBox(height: 24),
             SizedBox(
