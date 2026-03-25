@@ -4,6 +4,7 @@ import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/color_box_link_widget.dart';
 import '../widgets/pie_chart_widget.dart';
+import '../widgets/button_widget.dart';
 
 
 int count = 0;
@@ -27,11 +28,11 @@ class HomeScreen extends StatelessWidget {
               ),
             SizedBox(height: 25),
             Text(
-              'Das ist die Task-Übersicht von ${fullName()}.',
+              'Das ist deine Task-Übersicht:',
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
               ),
-            SizedBox(height: 5),
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -92,21 +93,37 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 5),
-            Text(
-              'Klicke einfach auf ein farbiges Feld und du gelangst zu den Tasks der entsprechenden Kategorie.',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium,
+            SizedBox(height: 20),
+            SizedBox(
+              width: 240,
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.touch_app,
+                    size: 30,
+                    color: BaseColors.dark,
+                    semanticLabel: '',
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Tippe auf ein Feld und du kommst zu deinen Tasks.',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 25),
-            ElevatedButton(
-              child: Text('Show all Tasks'),
+            BasicButton(
+              text: 'Alle Tasks',
               onPressed: () {
                 Navigator.pushNamed(
                   context,
                   '/tasks',
                   arguments: 'All');
               },
+              icon: Icons.assignment,
             ),
             OverviewPieChart(),
           ],

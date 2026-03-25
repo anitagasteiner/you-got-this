@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/navbars_widgets.dart';
 import '../data/tasks_data.dart';
+import '../common/colors.dart';
+import '../widgets/button_widget.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
@@ -66,11 +68,12 @@ class TasksScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 25),
-            ElevatedButton(
-              child: Text('zurück'),
+            BasicButton(
+              text: 'Home',
               onPressed: () {
                 Navigator.pop(context);
               },
+              icon: Icons.home_filled,
             ),
           ],
         ),
