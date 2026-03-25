@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../common/colors.dart';
 import '../common/painting.dart';
+import 'logo_widget.dart';
 
 
 class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
@@ -12,10 +13,7 @@ class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
       leading: Padding(
         padding: EdgeInsets.all(8.0),
         // child: Image.asset('/images/coffee.png'),
-        child: CustomPaint(
-          size: Size(200, 200),
-          painter: MyPainting(),
-        ),
+        child: const Logo(),
         ),
       title: const Text('You got this!'),
       actions: [
