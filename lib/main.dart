@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:you_got_this/common/colors.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
 
@@ -18,7 +19,15 @@ class MainApp extends StatelessWidget {
         '/tasks': (context) => TasksScreen(),
       },
       title: 'You got this!',
-      theme: ThemeData(fontFamily: 'Montserrat'),
+      theme: ThemeData(
+        fontFamily: 'Montserrat',
+        scaffoldBackgroundColor: BaseColors.light,
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(color: BaseColors.dark),
+          bodyMedium: TextStyle(color: BaseColors.dark),
+          titleLarge: TextStyle(color: BaseColors.dark),
+        ),
+      ),
     );
   }
 

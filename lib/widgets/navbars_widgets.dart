@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../common/colors.dart';
-import '../common/painting.dart';
 import 'logo_widget.dart';
 
 
@@ -15,10 +14,17 @@ class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
         // child: Image.asset('/images/coffee.png'),
         child: const Logo(),
         ),
-      title: const Text('You got this!'),
+      title: Text(
+        'You got this!',
+        style: TextStyle(color: BaseColors.light),
+        ),
       actions: [
         IconButton(
-          icon: Icon(Icons.menu),
+          icon: Icon(
+            Icons.menu,
+            size: 35,
+            color: BaseColors.dark,
+            ),          
           onPressed: () {},
         ),
       ],
