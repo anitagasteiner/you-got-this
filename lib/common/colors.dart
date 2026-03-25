@@ -16,6 +16,6 @@ class ScaleColors {
 }
 
 class BaseColors {
-  static final light = Colors.lime[50];
+  static final light = Color(0xFFFAFAFA);
   static final dark = Colors.grey[900];
 }

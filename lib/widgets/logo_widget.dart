@@ -16,7 +16,7 @@ class Logo extends StatelessWidget {
         ),
         Icon(
           Icons.cached,
-          size: 35,
+          size: 40,
           color: AppBarColors.icon,
           semanticLabel: '',
         ),

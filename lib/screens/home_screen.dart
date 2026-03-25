@@ -21,11 +21,15 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 5),
-            Text(greet()),
+            Text(
+              greet(),
+              style: Theme.of(context).textTheme.titleLarge,
+              ),
             SizedBox(height: 25),
             Text(
               'Das ist die Task-Übersicht von ${fullName()}.',
-              textAlign: TextAlign.center,              
+              style: Theme.of(context).textTheme.bodyLarge,
+              textAlign: TextAlign.center,
               ),
             SizedBox(height: 5),
             Row(
@@ -92,6 +96,7 @@ class HomeScreen extends StatelessWidget {
             Text(
               'Klicke einfach auf ein farbiges Feld und du gelangst zu den Tasks der entsprechenden Kategorie.',
               textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
             SizedBox(height: 25),
             ElevatedButton(
