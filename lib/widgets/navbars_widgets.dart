@@ -16,14 +16,16 @@ class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
         ),
       title: Text(
         'You got this!',
-        style: TextStyle(color: BaseColors.light),
+        style: TextStyle(
+          color: BaseColors.light,
+          fontWeight: FontWeight.w600),
         ),
       actions: [
         IconButton(
           icon: Icon(
             Icons.menu,
             size: 35,
-            color: BaseColors.dark,
+            color: BaseColors.light,
             ),          
           onPressed: () {},
         ),
