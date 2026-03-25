@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               ),
             SizedBox(height: 10),
+            // Colored Bar:
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -93,7 +94,11 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            // End of Colored Bar
+            // Pie Chart:
+            OverviewPieChart(),
+            // End of Pie Chart
+            SizedBox(height: 24),
             SizedBox(
               width: 240,
               child: Row(
@@ -125,7 +130,6 @@ class HomeScreen extends StatelessWidget {
               },
               icon: Icons.assignment,
             ),
-            OverviewPieChart(),
           ],
         ),
       ),

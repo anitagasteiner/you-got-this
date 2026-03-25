@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/navbars_widgets.dart';
 import '../data/tasks_data.dart';
-import '../common/colors.dart';
 import '../widgets/button_widget.dart';
 
 class TasksScreen extends StatelessWidget {

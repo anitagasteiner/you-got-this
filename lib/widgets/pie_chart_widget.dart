@@ -16,12 +16,12 @@ class PieChartState extends State {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 1.3,
-      child: Row(
-        children: <Widget>[
-          const SizedBox(
-            height: 18,
-          ),
+      aspectRatio: 0.9,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          children: [
+          // Pie Chart:
           Expanded(
             child: AspectRatio(
               aspectRatio: 1,
@@ -50,13 +50,15 @@ class PieChartState extends State {
               ),
             ),
           ),
+          // End of Pie Chart
+          //Caption:
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Indicator(
                 color: ScaleColors.toDo,
-                text: 'Anita 1',
+                text: 'To Do',
                 isSquare: true,
               ),
               SizedBox(
@@ -64,7 +66,7 @@ class PieChartState extends State {
               ),
               Indicator(
                 color: ScaleColors.toDoSoon,
-                text: 'Anita 2',
+                text: 'To Do Soon',
                 isSquare: true,
               ),
               SizedBox(
@@ -72,7 +74,7 @@ class PieChartState extends State {
               ),
               Indicator(
                 color: ScaleColors.stillFine,
-                text: 'Anita 3',
+                text: 'Still Fine',
                 isSquare: true,
               ),
               SizedBox(
@@ -80,7 +82,7 @@ class PieChartState extends State {
               ),
               Indicator(
                 color: ScaleColors.doneRecently,
-                text: 'Anita 4',
+                text: 'Done Recently',
                 isSquare: true,
               ),
               SizedBox(
@@ -88,15 +90,14 @@ class PieChartState extends State {
               ),
               Indicator(
                 color: ScaleColors.done,
-                text: 'Anita 5',
+                text: 'Done',
                 isSquare: true,
               )
             ],
           ),
-          const SizedBox(
-            width: 28,
-          ),
-        ],
+          //End of Caption
+          ],
+        ),
       ),
     );
   }
