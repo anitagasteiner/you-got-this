@@ -3,9 +3,9 @@ import 'data/tasks_data.dart';
 String firstName = 'Anita';
 String lastName = 'Gasteiner';
 
-String fullName() {
-  return '$firstName $lastName';
-}
+// String fullName() {
+//   return '$firstName $lastName';
+// }
 
 String greet() {
   return 'Hallo, $firstName!';
