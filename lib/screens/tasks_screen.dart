@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/navbars_widgets.dart';
 import '../data/tasks_data.dart';
+import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
+import '../widgets/stacked_bar_widget.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
@@ -40,11 +41,9 @@ class TasksScreen extends StatelessWidget {
                       color: Colors.green,
                     ),
                   ),
-              ],              
-            ),            
-            SizedBox(height: 5),
-            SizedBox(
-              height: 200,
+              ],
+            ),
+            Expanded(
               child: ListView(
                 children: (state == 'All'
                   ? tasks.values
@@ -58,14 +57,9 @@ class TasksScreen extends StatelessWidget {
                 }).toList(),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Die Test-Berechnung ergibt:'),
-                SizedBox(width: 5),
-                Text('ABC'),
-              ],
-            ),
+            SizedBox(height: 15),
+            Text('Status wechseln:'),
+            StackedBar(),
             SizedBox(height: 25),
             BasicButton(
               text: 'Home',

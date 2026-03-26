@@ -12,37 +12,15 @@ class StackedBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ColorBoxLink(
-            color: ScaleColors.toDo,
+            color: ScaleColors.done,
             onTap: () {
               Navigator.pushNamed(
                 context,
                 '/tasks',
-                arguments: 'To Do',
+                arguments: 'Done',
               );
             },
-            category: 'To Do',
-          ),
-          ColorBoxLink(
-            color: ScaleColors.toDoSoon,
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/tasks',
-                arguments: 'To Do Soon',
-              );
-            },
-            category: 'To Do Soon',
-          ),
-          ColorBoxLink(
-            color: ScaleColors.stillFine,
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/tasks',
-                arguments: 'Still Fine',
-              );
-            },
-            category: 'Still Fine',
+            category: 'Done',
           ),
           ColorBoxLink(
             color: ScaleColors.doneRecently,
@@ -56,15 +34,37 @@ class StackedBar extends StatelessWidget {
             category: 'Done Recently',
           ),
           ColorBoxLink(
-            color: ScaleColors.done,
+            color: ScaleColors.stillFine,
             onTap: () {
               Navigator.pushNamed(
                 context,
                 '/tasks',
-                arguments: 'Done',
+                arguments: 'Still Fine',
               );
             },
-            category: 'Done',
+            category: 'Still Fine',
+          ),
+          ColorBoxLink(
+            color: ScaleColors.toDoSoon,
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/tasks',
+                arguments: 'To Do Soon',
+              );
+            },
+            category: 'To Do Soon',
+          ),
+          ColorBoxLink(
+            color: ScaleColors.toDo,
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/tasks',
+                arguments: 'To Do',
+              );
+            },
+            category: 'To Do',
           ),
         ],
       );

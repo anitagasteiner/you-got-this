@@ -4,10 +4,6 @@ import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/fl_chart_widget.dart';
 import '../widgets/button_widget.dart';
-// import '../widgets/stacked_bar_widget.dart';
-
-
-// int count = 0;
 
 
 class HomeScreen extends StatelessWidget {
