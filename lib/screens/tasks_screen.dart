@@ -9,7 +9,7 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final category = ModalRoute.of(context)?.settings.arguments;
+    final state = ModalRoute.of(context)?.settings.arguments;
 
     return Scaffold(
       appBar: const AppBarTop(),
@@ -22,17 +22,17 @@ class TasksScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  category == 'All'
+                  state == 'All'
                     ? 'Alle Tasks'
-                    : 'Tasks der Kategorie ',
+                    : 'Tasks mit Status ',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                   ),
                 ),
-                if (category != 'All')
+                if (state != 'All')
                   Text(
-                    '$category',
+                    '$state',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
@@ -46,9 +46,9 @@ class TasksScreen extends StatelessWidget {
             SizedBox(
               height: 200,
               child: ListView(
-                children: (category == 'All'
+                children: (state == 'All'
                   ? tasks.values
-                  : tasks.values.where((task) => task.category == category))
+                  : tasks.values.where((task) => task.state == state))
                 .map((task) {
                   return ListTile(
                     leading: const Icon(Icons.check_box_outline_blank),

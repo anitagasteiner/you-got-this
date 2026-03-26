@@ -6,9 +6,10 @@ version: 0.1.0+1
 environment:
   sdk: ^3.11.1
 
-dependencies:
+dependencies:  
   flutter:
     sdk: flutter
+  pie_chart: ^5.1.0
   fl_chart: ^1.2.0
 
 dev_dependencies:

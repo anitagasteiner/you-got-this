@@ -11,13 +11,18 @@ String greet() {
   return 'Hallo, $firstName!';
 }
 
-int countByCategory(String category) {
+int countByState(String state) {
   return tasks.values
-    .where((task) => task.category == category)
+    .where((task) => task.state == state)
     .length;
 }
 
-double getWidth(String category) {
+double getWidth(String state) {
   int tasksAmount = tasks.values.length;
-  return 250/tasksAmount*countByCategory(category);
+  return 250/tasksAmount*countByState(state);
+}
+
+double getValue(String state) {
+  int tasksAmount = tasks.values.length;
+  return 250/tasksAmount*countByState(state);
 }

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import '../common/colors.dart';
 import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
-// import '../widgets/color_box_link_widget.dart';
-// import '../widgets/pie_chart_widget.dart';
+import '../widgets/fl_chart_widget.dart';
 import '../widgets/button_widget.dart';
-import '../widgets/stacked_bar_widget.dart';
+// import '../widgets/stacked_bar_widget.dart';
 
 
 // int count = 0;
@@ -34,12 +33,16 @@ class HomeScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               ),
             SizedBox(height: 10),
-            // Colored Bar:
-            StackedBar(),
-            // End of Colored Bar
-            // Pie Chart:
-            // OverviewPieChart(),
-            // End of Pie Chart
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                minWidth: 300,
+                maxWidth: 400,
+              ),
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: PieChartOverview(),
+              ),
+            ),
             SizedBox(height: 24),
             SizedBox(
               width: 240,
