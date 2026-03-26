@@ -13,3 +13,4 @@ class ChartCategoriesModel {
     required this.value,
   });
 }
+
