@@ -25,7 +25,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
           PieChartData(
             borderData: FlBorderData(show: false),
             sectionsSpace: 0,
-            centerSpaceRadius: 10,
+            centerSpaceRadius: 36,
             pieTouchData: PieTouchData(
               touchCallback: (FlTouchEvent event, pieTouchResponse) {
                 if (event is! FlTapDownEvent) {
@@ -58,7 +58,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
   }
 
   List<PieChartSectionData> _buildSections(double width) {
-    final radius = width / 2.3;
+    final radius = width / 2.8;
 
     return List.generate(chartCategories.length, (i) {
       final c = chartCategories[i];
