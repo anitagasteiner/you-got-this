@@ -28,18 +28,20 @@ class HomeScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
               ),
-            SizedBox(height: 10),
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                minWidth: 300,
-                maxWidth: 400,
-              ),
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: PieChartOverview(),
-              ),
+            SizedBox(height: 16),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final width = constraints.maxWidth.clamp(300.0, 400.0);
+                return SizedBox(
+                  width: width,
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: PieChartOverview(width: width),
+                  ),
+                );
+              },
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 16),
             SizedBox(
               width: 240,
               child: Row(
@@ -60,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 32),
             BasicButton(
               text: 'Alle Tasks',
               onPressed: () {

@@ -5,7 +5,11 @@ import '../common/colors.dart';
 
 
 class PieChartOverview extends StatefulWidget {
-  const PieChartOverview({super.key});
+  final double width;
+  const PieChartOverview({
+    super.key,
+    required this.width,
+    });
 
   @override
   State<PieChartOverview> createState() => _PieChartOverviewState();
@@ -46,21 +50,25 @@ class _PieChartOverviewState extends State<PieChartOverview> {
                 });
               },
             ),
-            sections: _buildSections(),
+            sections: _buildSections(widget.width),
           ),
         ),
       ),
     );
   }
 
-  List<PieChartSectionData> _buildSections() {
+  List<PieChartSectionData> _buildSections(double width) {
+    final radius = width / 2.3;
+
     return List.generate(chartCategories.length, (i) {
       final c = chartCategories[i];
       return PieChartSectionData(
         color: c.color,
         value: c.value,
         title: c.label,
-        radius: MediaQuery.of(context).size.width / 2.3,
+        radius: radius,
+        // radius: MediaQuery.of(context).size.width / 2.3,
+        // radius: constraints.maxWidth / 2.3,
         titleStyle: TextStyle(
           fontWeight: FontWeight.w600,
           color: BaseColors.dark,

@@ -12,19 +12,19 @@ final List<ChartCategoriesModel> chartCategories = [
   ),
   ChartCategoriesModel(
     key: 'doneRecently',
-    label: 'Done Recently',
+    label: 'Done\nRecently',
     color: ScaleColors.doneRecently,
     value: getValue('Done Recently'),
   ),
   ChartCategoriesModel(
     key: 'stillFine',
-    label: 'Still Fine',
+    label: 'Still\nFine',
     color: ScaleColors.stillFine,
     value: getValue('Still Fine'),
   ),
   ChartCategoriesModel(
     key: 'toDoSoon',
-    label: 'To Do Soon',
+    label: 'To Do\nSoon',
     color: ScaleColors.toDoSoon,
     value: getValue('To Do Soon'),
   ),
