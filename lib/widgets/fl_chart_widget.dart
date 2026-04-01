@@ -25,7 +25,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
           PieChartData(
             borderData: FlBorderData(show: false),
             sectionsSpace: 0,
-            centerSpaceRadius: 0,
+            centerSpaceRadius: 10,
             pieTouchData: PieTouchData(
               touchCallback: (FlTouchEvent event, pieTouchResponse) {
                 if (event is! FlTapDownEvent) {
@@ -67,8 +67,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
         value: c.value,
         title: c.label,
         radius: radius,
-        // radius: MediaQuery.of(context).size.width / 2.3,
-        // radius: constraints.maxWidth / 2.3,
+        titlePositionPercentageOffset: 0.6,
         titleStyle: TextStyle(
           fontWeight: FontWeight.w600,
           color: BaseColors.dark,
