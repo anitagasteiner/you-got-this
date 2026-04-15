@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
+import '../widgets/new_task_form_widget.dart';
 
 class NewTaskScreen extends StatelessWidget {
   const NewTaskScreen({super.key});
@@ -26,6 +27,7 @@ class NewTaskScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 15),
+            const NewTaskForm(),
             BasicButton(
               text: 'Home',
               onPressed: () {
