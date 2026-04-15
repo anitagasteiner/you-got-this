@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import '../common/colors.dart';
+import 'button_widget.dart';
 
 
 class NewTaskForm extends StatefulWidget {
@@ -24,6 +25,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
         children: <Widget>[
           TextFormField(
             decoration: const InputDecoration(hintText: 'Task-Bezeichnung'),
+            style: Theme.of(context).textTheme.bodyMedium,
             validator: (String? value) {
               if (value == null || value.isEmpty || RegExp(r'[^a-zA-Z0-9 ]').hasMatch(value)) {
                 return 'Bitte Task-Bezeichnung eingeben';
@@ -31,8 +33,10 @@ class _NewTaskFormState extends State<NewTaskForm> {
               return null;
             },
           ),
+          SizedBox(height: 12),
           TextFormField(
             decoration: const InputDecoration(hintText: 'Wiederholung'),
+            style: Theme.of(context).textTheme.bodyMedium,
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value == null || value.isEmpty || RegExp(r'\D').hasMatch(value)) {
@@ -41,8 +45,10 @@ class _NewTaskFormState extends State<NewTaskForm> {
               return null;
             },
           ),
-          SizedBox(height: 18),
+          SizedBox(height: 24),
           DropdownButtonFormField<String>(
+            // style: TextStyle(color: BaseColors.dark),
+            style: Theme.of(context).textTheme.bodyMedium,
             decoration: InputDecoration(
               labelText: 'Status',
               border: OutlineInputBorder(),
@@ -66,22 +72,26 @@ class _NewTaskFormState extends State<NewTaskForm> {
               return null;
             },
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate will return true if the form is valid, or false if
-                // the form is invalid.
-                if (_formKey.currentState!.validate()) {
-                  // Process data
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Daten werden verarbeitet.')),
-                  );
-                }
-              },
-              child: const Text('Bestätigen'),
+          Center(
+            // mainAxisAlignment: MainAxisAlignment.spaceAround,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: BasicButton(
+                text: 'Bestätigen',
+                onPressed: () {
+                  // Validate will return true if the form is valid, or false if
+                  // the form is invalid.
+                  if (_formKey.currentState!.validate()) {
+                    // Process data
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Daten werden verarbeitet.')),
+                    );
+                  }                    
+                },
+                icon: Icons.check_circle_rounded,
+              ),
             ),
-          ),
+          ),          
         ],
       ),
     );
