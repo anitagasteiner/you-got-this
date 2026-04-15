@@ -63,16 +63,33 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 32),
-            BasicButton(
-              text: 'Alle Tasks',
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  '/tasks',
-                  arguments: 'All');
-              },
-              icon: Icons.assignment,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                BasicButton(
+                  text: 'Alle Tasks',
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/tasks',
+                      arguments: 'All'
+                    );
+                  },
+                  icon: Icons.assignment,
+                ),
+                BasicButton(
+                  text: 'Neuer Task',
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/tasks', //TODO: Change to right one!
+                    );
+                  },
+                  icon: Icons.add_circle_rounded,
+                ),
+              ],
             ),
+            
           ],
         ),
       ),
