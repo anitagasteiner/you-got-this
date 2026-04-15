@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:you_got_this/common/colors.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
+import 'screens/new_task_screen.dart';
 
 void main() {
   runApp(MainApp());
@@ -17,6 +18,7 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => HomeScreen(),
         '/tasks': (context) => TasksScreen(),
+        '/new': (context) => NewTaskScreen(),
       },
       title: 'You got this!',
       theme: ThemeData(

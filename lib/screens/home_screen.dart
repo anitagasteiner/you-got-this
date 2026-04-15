@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(
                       context,
-                      '/tasks', //TODO: Change to right one!
+                      '/new',
                     );
                   },
                   icon: Icons.add_circle_rounded,
