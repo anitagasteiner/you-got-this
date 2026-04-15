@@ -11,6 +11,9 @@ class NewTaskForm extends StatefulWidget {
 
 class _NewTaskFormState extends State<NewTaskForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? _selectedValue;
+
+  // List<String> stateList = ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do'];
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +41,31 @@ class _NewTaskFormState extends State<NewTaskForm> {
               return null;
             },
           ),
+          SizedBox(height: 18),
+          DropdownButtonFormField<String>(
+            decoration: InputDecoration(
+              labelText: 'Status',
+              border: OutlineInputBorder(),
+            ),
+            initialValue: 'To Do',
+            items: ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do']
+              .map((option) => DropdownMenuItem(
+                value: option,
+                child: Text(option),
+              ))
+              .toList(),
+            onChanged: (value) {
+              setState(() {
+                _selectedValue = value;
+              });
+            },
+            validator: (value) {
+              if (value == null) {
+                return 'Bitte wähle einen Status.';
+              }
+              return null;
+            },
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
             child: ElevatedButton(
@@ -45,7 +73,10 @@ class _NewTaskFormState extends State<NewTaskForm> {
                 // Validate will return true if the form is valid, or false if
                 // the form is invalid.
                 if (_formKey.currentState!.validate()) {
-                  // Process data.
+                  // Process data
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Daten werden verarbeitet.')),
+                  );
                 }
               },
               child: const Text('Bestätigen'),
