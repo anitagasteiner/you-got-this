@@ -27,7 +27,11 @@ class NewTaskScreen extends StatelessWidget {
               ],
             ),
             SizedBox(height: 15),
-            const NewTaskForm(),
+            SizedBox(
+              width: 250,
+              child: const NewTaskForm(),
+            ),
+            // const NewTaskForm(),
             BasicButton(
               text: 'Home',
               onPressed: () {
