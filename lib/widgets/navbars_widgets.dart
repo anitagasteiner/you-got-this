@@ -51,21 +51,28 @@ class AppBarBottom extends StatelessWidget {
         height: 60,     
         child: Container(
           color: AppBarColors.background,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: const [
-              Text(
-                'Impressum',
-                style: TextStyle(fontSize: 16),
-                ),
-              Text(
-                '\u00A9 2026 \n Anita Gasteiner',
-                textAlign: TextAlign.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: const [
+                  Text(
+                    'Impressum',
+                    style: TextStyle(fontSize: 16),
+                    ),
+                  Text(
+                    'Datenschutz',
+                    style: TextStyle(fontSize: 16),
+                    ),
+                ],
               ),
               Text(
-                'Datenschutz',
-                style: TextStyle(fontSize: 16),
-                ),
+                '\u00A9 2026 Anita Gasteiner',
+                style: TextStyle(fontSize: 14),
+              ),
+              SizedBox(height: 4),
             ],
           ),
         ),
