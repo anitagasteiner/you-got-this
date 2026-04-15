@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
             ),
             SizedBox(height: 16),
             SizedBox(
-              width: 240,
+              width: 250,
               child: Row(
                 children: [
                   Icon(
@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      'Tippe auf ein Feld und du kommst zu deinen Tasks.',
+                      'Tippe auf eine Kategorie, und du gelangst zu deren Tasks.',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
