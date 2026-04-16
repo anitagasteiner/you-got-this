@@ -34,11 +34,11 @@ class _NewTaskFormState extends State<NewTaskForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextFormField(
-            decoration: const InputDecoration(hintText: 'Task-Bezeichnung'),
+            decoration: const InputDecoration(hintText: 'Bezeichnung'),
             style: Theme.of(context).textTheme.bodyMedium,
             validator: (String? value) {
               if (value == null || value.isEmpty || RegExp(r'[^a-zA-Z0-9 ]').hasMatch(value)) {
-                return 'Bitte Task-Bezeichnung eingeben';
+                return 'Gib die Bezeichnung des Tasks ein.';
               }
               return null;
             },
@@ -46,18 +46,18 @@ class _NewTaskFormState extends State<NewTaskForm> {
           ),
           SizedBox(height: 12),
           TextFormField(
-            decoration: const InputDecoration(hintText: 'Wiederholung'),
+            decoration: const InputDecoration(hintText: 'Wiederholung in Tagen'),
             style: Theme.of(context).textTheme.bodyMedium,
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value == null || value.isEmpty || RegExp(r'\D').hasMatch(value)) {
-                return 'Bitte Wiederholung in Tagen eingeben';
+                return 'Gib die Wiederholung in Tagen ein.';
               }
               return null;
             },
             controller: taskRecurrence,
           ),
-          SizedBox(height: 24),
+          SizedBox(height: 28),
           DropdownButtonFormField<String>(
             // style: TextStyle(color: BaseColors.dark),
             style: Theme.of(context).textTheme.bodyMedium,
@@ -84,12 +84,23 @@ class _NewTaskFormState extends State<NewTaskForm> {
               return null;
             },
           ),
-          Center(
-            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: BasicButton(
-                text: 'Bestätigen',
+          SizedBox(height: 18),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              BasicButton(
+                text: 'Leeren',
+                onPressed: () {
+                  setState(() {
+                    _formKey.currentState!.reset();
+                    taskName.clear();
+                    taskRecurrence.clear();
+                  });
+                },
+                icon: Icons.remove_circle_rounded,
+              ),
+              BasicButton(
+                text: 'OK',
                 onPressed: () {
                   // Validate will return true if the form is valid, or false if
                   // the form is invalid.
@@ -110,8 +121,8 @@ class _NewTaskFormState extends State<NewTaskForm> {
                 },
                 icon: Icons.check_circle_rounded,
               ),
-            ),
-          ),          
+            ],
+          ),
         ],
       ),
     );
