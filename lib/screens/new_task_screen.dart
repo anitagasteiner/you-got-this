@@ -34,8 +34,14 @@ class NewTaskScreen extends StatelessWidget {
             SizedBox(height: 24),
             BasicButton(
               text: 'Home',
+              // onPressed: () {
+              //   Navigator.pop(context);
+              // },
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(
+                  context,
+                  '/',
+                );
               },
               icon: Icons.home_filled,
             ),

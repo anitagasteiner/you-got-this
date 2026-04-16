@@ -20,12 +20,11 @@ class TasksScreen extends StatelessWidget {
           children: [
             SizedBox(height: 5),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   state == 'All'
                     ? 'Alle Tasks'
-                    : 'Tasks mit Status ',
+                    : 'Tasks ',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -63,8 +62,14 @@ class TasksScreen extends StatelessWidget {
             SizedBox(height: 25),
             BasicButton(
               text: 'Home',
+              // onPressed: () {
+              //   Navigator.pop(context);
+              // },
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(
+                  context,
+                  '/',
+                );
               },
               icon: Icons.home_filled,
             ),
