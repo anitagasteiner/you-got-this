@@ -15,8 +15,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
   final taskName = TextEditingController();
   final taskRecurrence = TextEditingController();
   String? _selectedState = 'To Do';
-
-  // List<String> stateList = ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do'];
+  List<String> statesList = ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do'];
 
   @override
   void dispose() {
@@ -66,7 +65,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
               border: OutlineInputBorder(),
             ),
             initialValue: 'To Do',
-            items: ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do']
+            items: statesList
               .map((option) => DropdownMenuItem(
                 value: option,
                 child: Text(option),
@@ -113,7 +112,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          content: Text(taskName.text + taskRecurrence.text + _selectedState!),
+                          content: Text('Dein neuer Task wurde gespeichert:\n${taskName.text} ist in ${taskRecurrence.text} Tagen fällig. Momentaner Status: ${_selectedState!}'),
                         );
                       },
                     );                    
