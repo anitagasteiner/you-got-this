@@ -12,9 +12,19 @@ class NewTaskForm extends StatefulWidget {
 
 class _NewTaskFormState extends State<NewTaskForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String? _selectedValue;
+  final taskName = TextEditingController();
+  final taskRecurrence = TextEditingController();
+  String? _selectedState = 'To Do';
 
   // List<String> stateList = ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do'];
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    taskName.dispose();
+    taskRecurrence.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +42,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
               }
               return null;
             },
+            controller: taskName,
           ),
           SizedBox(height: 12),
           TextFormField(
@@ -44,6 +55,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
               }
               return null;
             },
+            controller: taskRecurrence,
           ),
           SizedBox(height: 24),
           DropdownButtonFormField<String>(
@@ -62,7 +74,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
               .toList(),
             onChanged: (value) {
               setState(() {
-                _selectedValue = value;
+                _selectedState = value;
               });
             },
             validator: (value) {
@@ -83,10 +95,18 @@ class _NewTaskFormState extends State<NewTaskForm> {
                   // the form is invalid.
                   if (_formKey.currentState!.validate()) {
                     // Process data
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Daten werden verarbeitet.')),
-                    );
-                  }                    
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   SnackBar(content: Text('Daten werden verarbeitet.')),
+                    // );
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          content: Text(taskName.text + taskRecurrence.text + _selectedState!),
+                        );
+                      },
+                    );                    
+                  }
                 },
                 icon: Icons.check_circle_rounded,
               ),
