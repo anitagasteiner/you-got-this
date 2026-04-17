@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl_standalone.dart'
   if (dart.library.html) 'package:intl/intl_browser.dart';
+import 'package:intl/date_symbol_data_local.dart';
 // import 'package:you_got_this/common/colors.dart';
 import './common/colors.dart';
 import 'screens/home_screen.dart';
@@ -14,6 +15,7 @@ import 'screens/new_task_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting();
   await findSystemLocale();
   runApp(const MainApp());
 }

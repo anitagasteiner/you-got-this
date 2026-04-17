@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:intl/intl.dart';
 // import '../common/colors.dart';
 import 'button_widget.dart';
 
@@ -46,20 +47,22 @@ class _NewTaskFormState extends State<NewTaskForm> {
           ),
           SizedBox(height: 12),
           DateTimeFormField(
+            mode: DateTimeFieldPickerMode.date,
             decoration: const InputDecoration(hintText: 'Fälligkeitsdatum'),
-            firstDate: DateTime.now().add(const Duration(days: 10)),
-            lastDate: DateTime.now().add(const Duration(days: 40)),
+            // firstDate: DateTime.now().add(const Duration(days: 10)),
+            // lastDate: DateTime.now().add(const Duration(days: 40)),
             initialPickerDateTime: DateTime.now().add(const Duration(days: 20)),
             onChanged: (DateTime? value) {
-              selectedDate = value;
+              setState(() {
+                selectedDate = value;
+              });              
             },
-            // validator: (value) {
-            //   if (value == null || value.isEmpty || RegExp(r'\D').hasMatch(value)) {
-            //     return 'Gib die Wiederholung in Tagen ein.';
-            //   }
-            //   return null;
-            // },
-            // controller: taskRecurrence,
+            validator: (DateTime? value) {
+              if (value == null) {
+                return 'Wähle ein erstes Fälligkeitsdatum.';
+              }
+              return null;
+            },
           ),
           SizedBox(height: 12),
           TextFormField(
@@ -128,7 +131,9 @@ class _NewTaskFormState extends State<NewTaskForm> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          content: Text('Dein neuer Task wurde gespeichert:\n${taskName.text} ist in ${taskRecurrence.text} Tagen fällig. Momentaner Status: ${_selectedState!}'),
+                          content: Text(
+                            'Dein neuer Task wurde gespeichert:\n${taskName.text} ist am ${DateFormat('EEEE, d. MMM', 'de').format(selectedDate!)}, zum ersten Mal fällig und dann alle ${taskRecurrence.text} Tage.\nMomentaner Status: ${_selectedState!}'
+                          ),
                         );
                       },
                     );                    
