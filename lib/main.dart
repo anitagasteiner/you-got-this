@@ -39,6 +39,12 @@ class MainApp extends StatelessWidget {
           bodyMedium: TextStyle(color: BaseColors.dark),
           titleLarge: TextStyle(color: BaseColors.dark),
         ),
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(
+            color: BaseColors.dark,
+            fontSize: 14,
+          ),
+        ),
       ),
     );
   }

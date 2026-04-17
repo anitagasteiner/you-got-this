@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:date_field/date_field.dart';
 // import '../common/colors.dart';
 import 'button_widget.dart';
 
@@ -14,7 +15,8 @@ class _NewTaskFormState extends State<NewTaskForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final taskName = TextEditingController();
   final taskRecurrence = TextEditingController();
-  String? _selectedState = 'To Do';
+  DateTime? selectedDate;
+  String? _selectedState = 'To Do';  
   List<String> statesList = ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do'];
 
   @override
@@ -34,7 +36,6 @@ class _NewTaskFormState extends State<NewTaskForm> {
         children: <Widget>[
           TextFormField(
             decoration: const InputDecoration(hintText: 'Bezeichnung'),
-            style: Theme.of(context).textTheme.bodyMedium,
             validator: (String? value) {
               if (value == null || value.isEmpty || RegExp(r'[^a-zA-Z0-9 ]').hasMatch(value)) {
                 return 'Gib die Bezeichnung des Tasks ein.';
@@ -44,22 +45,25 @@ class _NewTaskFormState extends State<NewTaskForm> {
             controller: taskName,
           ),
           SizedBox(height: 12),
-          TextFormField(
-            decoration: const InputDecoration(hintText: 'Wiederholung in Tagen'),
-            style: Theme.of(context).textTheme.bodyMedium,
-            keyboardType: TextInputType.number,
-            validator: (value) {
-              if (value == null || value.isEmpty || RegExp(r'\D').hasMatch(value)) {
-                return 'Gib die Wiederholung in Tagen ein.';
-              }
-              return null;
+          DateTimeFormField(
+            decoration: const InputDecoration(hintText: 'Fälligkeitsdatum'),
+            firstDate: DateTime.now().add(const Duration(days: 10)),
+            lastDate: DateTime.now().add(const Duration(days: 40)),
+            initialPickerDateTime: DateTime.now().add(const Duration(days: 20)),
+            onChanged: (DateTime? value) {
+              selectedDate = value;
             },
-            controller: taskRecurrence,
+            // validator: (value) {
+            //   if (value == null || value.isEmpty || RegExp(r'\D').hasMatch(value)) {
+            //     return 'Gib die Wiederholung in Tagen ein.';
+            //   }
+            //   return null;
+            // },
+            // controller: taskRecurrence,
           ),
           SizedBox(height: 12),
           TextFormField(
             decoration: const InputDecoration(hintText: 'Wiederholung in Tagen'),
-            style: Theme.of(context).textTheme.bodyMedium,
             keyboardType: TextInputType.number,
             validator: (value) {
               if (value == null || value.isEmpty || RegExp(r'\D').hasMatch(value)) {
@@ -71,7 +75,6 @@ class _NewTaskFormState extends State<NewTaskForm> {
           ),
           SizedBox(height: 28),
           DropdownButtonFormField<String>(
-            // style: TextStyle(color: BaseColors.dark),
             style: Theme.of(context).textTheme.bodyMedium,
             decoration: InputDecoration(
               labelText: 'Status',
