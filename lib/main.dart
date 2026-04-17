@@ -3,6 +3,7 @@ import 'package:intl/intl_standalone.dart'
   if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:intl/date_symbol_data_local.dart';
 // import 'package:you_got_this/common/colors.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import './common/colors.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
@@ -33,6 +34,16 @@ class MainApp extends StatelessWidget {
         '/new': (context) => NewTaskScreen(),
       },
       title: 'You got this!',
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('de'),
+        // Locale('en'),
+      ],
+      locale: const Locale('de'),
       theme: ThemeData(
         fontFamily: 'Montserrat',
         scaffoldBackgroundColor: BaseColors.light,

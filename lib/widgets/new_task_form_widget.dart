@@ -48,6 +48,8 @@ class _NewTaskFormState extends State<NewTaskForm> {
           SizedBox(height: 12),
           DateTimeFormField(
             mode: DateTimeFieldPickerMode.date,
+            dateFormat: DateFormat('dd.MM.yyyy', 'de'),
+            style: Theme.of(context).textTheme.bodyLarge,
             decoration: const InputDecoration(hintText: 'Fälligkeitsdatum'),
             // firstDate: DateTime.now().add(const Duration(days: 10)),
             // lastDate: DateTime.now().add(const Duration(days: 40)),
