@@ -38,7 +38,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
           TextFormField(
             decoration: const InputDecoration(hintText: 'Bezeichnung'),
             validator: (String? value) {
-              if (value == null || value.isEmpty || RegExp(r'[^a-zA-Z0-9 ]').hasMatch(value)) {
+              if (value == null || value.isEmpty || RegExp(r'[^\p{L}\p{M}\p{N} ]', unicode: true).hasMatch(value)) { // RegExp(r'[^a-zA-Z0-9 ]')
                 return 'Gib die Bezeichnung des Tasks ein.';
               }
               return null;
