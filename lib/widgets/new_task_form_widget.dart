@@ -56,6 +56,19 @@ class _NewTaskFormState extends State<NewTaskForm> {
             },
             controller: taskRecurrence,
           ),
+          SizedBox(height: 12),
+          TextFormField(
+            decoration: const InputDecoration(hintText: 'Wiederholung in Tagen'),
+            style: Theme.of(context).textTheme.bodyMedium,
+            keyboardType: TextInputType.number,
+            validator: (value) {
+              if (value == null || value.isEmpty || RegExp(r'\D').hasMatch(value)) {
+                return 'Gib die Wiederholung in Tagen ein.';
+              }
+              return null;
+            },
+            controller: taskRecurrence,
+          ),
           SizedBox(height: 28),
           DropdownButtonFormField<String>(
             // style: TextStyle(color: BaseColors.dark),

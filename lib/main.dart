@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:you_got_this/common/colors.dart';
+import 'package:intl/intl_standalone.dart'
+  if (dart.library.html) 'package:intl/intl_browser.dart';
+// import 'package:you_got_this/common/colors.dart';
+import './common/colors.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/new_task_screen.dart';
 
-void main() {
-  runApp(MainApp());
+
+// void main() {
+//   runApp(MainApp());
+// }
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await findSystemLocale();
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
