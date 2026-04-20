@@ -4,6 +4,8 @@ import 'package:intl/intl_standalone.dart'
 import 'package:intl/date_symbol_data_local.dart';
 // import 'package:you_got_this/common/colors.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import './common/colors.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
@@ -16,6 +18,9 @@ import 'screens/new_task_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await initializeDateFormatting();
   await findSystemLocale();
   runApp(const MainApp());
