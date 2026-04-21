@@ -5,6 +5,8 @@ import 'package:intl/date_symbol_data_local.dart';
 // import 'package:you_got_this/common/colors.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'services/firestore_service.dart';
 import 'firebase_options.dart';
 import './common/colors.dart';
 import 'screens/home_screen.dart';
@@ -23,7 +25,12 @@ Future<void> main() async {
   );
   await initializeDateFormatting();
   await findSystemLocale();
-  runApp(const MainApp());
+  runApp(
+    Provider(
+      create: (_) => FirestoreService(),
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
