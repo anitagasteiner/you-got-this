@@ -1,3 +1,4 @@
+// Defines the status of a task as enum.
 enum TaskState {
   done,
   doneRecently,
@@ -6,6 +7,8 @@ enum TaskState {
   toDo,
 }
 
+// Expands the enum with additional logic.
+// Gives back user friendly wording.
 extension TaskStateX on TaskState {
   String get label {
     switch (this) {
