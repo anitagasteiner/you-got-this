@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-class ChartCategoriesModel {
-  final String key;
-  final String label;
-  final Color color;
+// class ChartCategoriesModel {
+//   final String key;
+//   final String label;
+//   final Color color;
 
-  const ChartCategoriesModel({
-    required this.key,
-    required this.label,
-    required this.color,
-  });
-}
+//   const ChartCategoriesModel({
+//     required this.key,
+//     required this.label,
+//     required this.color,
+//   });
+// }

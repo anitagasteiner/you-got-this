@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../data/chart_categories_data.dart';
+// import '../data/chart_categories_data.dart';
 import '../common/colors.dart';
 import '../models/task_model.dart';
+import '../models/task_state.dart';
 
 
 class PieChartOverview extends StatefulWidget {
@@ -20,8 +21,26 @@ class PieChartOverview extends StatefulWidget {
 }
 
 class _PieChartOverviewState extends State<PieChartOverview> {
+
+  Color _colorForState(TaskState state) {
+    switch (state) {
+      case TaskState.done:
+        return ScaleColors.done;
+      case TaskState.doneRecently:
+        return ScaleColors.doneRecently;
+      case TaskState.stillFine:
+        return ScaleColors.stillFine;
+      case TaskState.toDoSoon:
+        return ScaleColors.toDoSoon;
+      case TaskState.toDo:
+        return ScaleColors.toDo;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final states = TaskState.values;
+    
     return Center(
       child: AspectRatio(
         aspectRatio: 1,
@@ -39,7 +58,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
                   return;
                 }
                 final index = pieTouchResponse.touchedSection!.touchedSectionIndex;
-                final categoryKey = chartCategories[index].key;
+                final state = states[index];
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   if (!mounted) {
                     return;
@@ -47,32 +66,30 @@ class _PieChartOverviewState extends State<PieChartOverview> {
                   Navigator.pushNamed(
                     context,
                     '/tasks',
-                    arguments: categoryKey
+                    arguments: state
                   );
                 });
               },
             ),
-            sections: _buildSections(widget.width),
+            sections: _buildSections(states),
           ),
         ),
       ),
     );
   }
 
-  List<PieChartSectionData> _buildSections(double width) {
-    final radius = width / 2.8;
+  List<PieChartSectionData> _buildSections(List<TaskState> states) {
+    final radius = widget.width / 2.8;
 
-    return List.generate(chartCategories.length, (i) {
-      final categories = chartCategories[i];
-
+    return states.map((state) {
       final count = widget.tasks
-        .where((task) => task.state.name == categories.key)
+        .where((task) => task.state == state)
         .length;
 
       return PieChartSectionData(
-        color: categories.color,
+        color: _colorForState(state),
         value: count.toDouble(),
-        title: categories.label,
+        title: state.label,
         radius: radius,
         titlePositionPercentageOffset: 0.6,
         titleStyle: TextStyle(
@@ -80,7 +97,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
           color: BaseColors.dark,
         ),
       );
-    });
+    }).toList();
   }
-}
 
+}
