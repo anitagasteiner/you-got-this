@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../services/firestore_service.dart';
 import '../common/colors.dart';
+import '../models/task_model.dart';
 import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/fl_chart_widget.dart';
@@ -29,18 +32,33 @@ class HomeScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               ),
             SizedBox(height: 16),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final width = constraints.maxWidth.clamp(300.0, 400.0);
-                return SizedBox(
-                  width: width,
-                  child: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: PieChartOverview(width: width),
-                  ),
+            StreamBuilder<List<TaskModel>>(
+              stream: context.read<FirestoreService>().getTasks(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+                if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Text('Keine Tasks vorhanden');
+                }
+                final tasks = snapshot.data!;
+                return LayoutBuilder(
+                  builder: (context, constraints) {
+                    final width = constraints.maxWidth.clamp(300.0, 400.0);
+                    return SizedBox(
+                      width: width,
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: PieChartOverview(
+                          width: width,
+                          tasks: tasks,
+                        ),
+                      ),
+                    );
+                  },
                 );
-              },
-            ),
+              }
+            ),            
             SizedBox(height: 16),
             SizedBox(
               width: 250,

@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../data/chart_categories_data.dart';
 import '../common/colors.dart';
+import '../models/task_model.dart';
 
 
 class PieChartOverview extends StatefulWidget {
   final double width;
+  final List<TaskModel> tasks;
+
   const PieChartOverview({
     super.key,
     required this.width,
+    required this.tasks,
     });
 
   @override
@@ -61,11 +65,16 @@ class _PieChartOverviewState extends State<PieChartOverview> {
     final radius = width / 2.8;
 
     return List.generate(chartCategories.length, (i) {
-      final c = chartCategories[i];
+      final categories = chartCategories[i];
+
+      final count = widget.tasks
+        .where((task) => task.state == categories.label.replaceAll('\n', ' '))
+        .length;
+
       return PieChartSectionData(
-        color: c.color,
-        value: c.value,
-        title: c.label,
+        color: categories.color,
+        value: count.toDouble(),
+        title: categories.label,
         radius: radius,
         titlePositionPercentageOffset: 0.6,
         titleStyle: TextStyle(

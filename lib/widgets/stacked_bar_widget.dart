@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'color_box_link_widget.dart';
 import '../common/colors.dart';
+import '../models/task_model.dart';
 
 
 class StackedBar extends StatelessWidget {
-  const StackedBar({super.key});
+  final List<TaskModel> tasks;
+
+  const StackedBar({
+    super.key,
+    required this.tasks,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +27,7 @@ class StackedBar extends StatelessWidget {
               );
             },
             category: 'Done',
+            tasks: tasks,
           ),
           ColorBoxLink(
             color: ScaleColors.doneRecently,
@@ -32,6 +39,7 @@ class StackedBar extends StatelessWidget {
               );
             },
             category: 'Done Recently',
+            tasks: tasks,
           ),
           ColorBoxLink(
             color: ScaleColors.stillFine,
@@ -43,6 +51,7 @@ class StackedBar extends StatelessWidget {
               );
             },
             category: 'Still Fine',
+            tasks: tasks,
           ),
           ColorBoxLink(
             color: ScaleColors.toDoSoon,
@@ -54,6 +63,7 @@ class StackedBar extends StatelessWidget {
               );
             },
             category: 'To Do Soon',
+            tasks: tasks,
           ),
           ColorBoxLink(
             color: ScaleColors.toDo,
@@ -65,6 +75,7 @@ class StackedBar extends StatelessWidget {
               );
             },
             category: 'To Do',
+            tasks: tasks,
           ),
         ],
       );

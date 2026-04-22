@@ -64,18 +64,29 @@ class TasksScreen extends StatelessWidget {
                     ? tasks
                     : tasks.where((task) => task.state == state).toList();
 
-                  return ListView.builder(
-                    itemCount: filteredTasks.length,
-                    itemBuilder: (context, index) {
-                      final task = filteredTasks[index];
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: filteredTasks.length,
+                          itemBuilder: (context, index) {
+                            final task = filteredTasks[index];
 
-                      return ListTile(
-                        leading: const Icon(Icons.check_box_outline_blank),
-                        title: Text(task.name),
-                        subtitle: Text('Alle ${task.recurrence} Tage'),
-                      );
-                    },
-                  );
+                            return ListTile(
+                              leading: const Icon(Icons.check_box_outline_blank),
+                              title: Text(task.name),
+                              subtitle: Text('Alle ${task.recurrence} Tage'),
+                            );
+                          },
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Text('Status wechseln:'),
+                      StackedBar(tasks: tasks),
+                      SizedBox(height: 25),
+                    ],
+                  );                  
+                   
                 },
               ),
             ),
@@ -94,10 +105,7 @@ class TasksScreen extends StatelessWidget {
             //     }).toList(),
             //   ),
             // ),
-            SizedBox(height: 15),
-            Text('Status wechseln:'),
-            StackedBar(),
-            SizedBox(height: 25),
+            
             BasicButton(
               text: 'Home',
               // onPressed: () {

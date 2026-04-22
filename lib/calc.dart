@@ -1,4 +1,5 @@
 import 'data/tasks_data.dart';
+import './models/task_model.dart';
 
 String firstName = 'Anita';
 String lastName = 'Gasteiner';
@@ -11,18 +12,16 @@ String greet() {
   return 'Hallo, $firstName!';
 }
 
-int countByState(String state) {
-  return tasks.values
-    .where((task) => task.state == state)
-    .length;
+int countByState(List<TaskModel> tasks, String state) {
+  return tasks.where((task) => task.state == state).length;
 }
 
-double getWidth(String state) {
-  int tasksAmount = tasks.values.length;
-  return 250/tasksAmount*countByState(state);
+double getWidth(List<TaskModel> tasks, String state) {
+  int tasksAmount = tasks.length;
+  return 250/tasksAmount*countByState(tasks, state);
 }
 
-double getValue(String state) {
-  int tasksAmount = tasks.values.length;
-  return 250/tasksAmount*countByState(state);
+double getValue(List<TaskModel> tasks, String state) {
+  int tasksAmount = tasks.length;
+  return 250/tasksAmount*countByState(tasks, state);
 }
