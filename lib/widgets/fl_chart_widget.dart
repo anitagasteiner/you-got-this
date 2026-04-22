@@ -39,8 +39,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
                   return;
                 }
                 final index = pieTouchResponse.touchedSection!.touchedSectionIndex;
-                // final categoryKey = chartCategories[index].key;
-                final categoryLabel = chartCategories[index].label;
+                final categoryKey = chartCategories[index].key;
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   if (!mounted) {
                     return;
@@ -48,8 +47,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
                   Navigator.pushNamed(
                     context,
                     '/tasks',
-                    // arguments: categoryKey
-                    arguments: categoryLabel
+                    arguments: categoryKey
                   );
                 });
               },
@@ -68,7 +66,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
       final categories = chartCategories[i];
 
       final count = widget.tasks
-        .where((task) => task.state == categories.label.replaceAll('\n', ' '))
+        .where((task) => task.state.name == categories.key)
         .length;
 
       return PieChartSectionData(

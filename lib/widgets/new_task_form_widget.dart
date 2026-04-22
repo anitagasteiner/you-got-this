@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../services/firestore_service.dart';
 // import '../common/colors.dart';
 import '../models/task_model.dart';
+import '../models/task_state.dart';
 import 'button_widget.dart';
 
 
@@ -20,8 +21,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
   final taskName = TextEditingController();
   final taskRecurrence = TextEditingController();
   DateTime? selectedDate;
-  String? _selectedState = 'To Do';  
-  List<String> statesList = ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do'];
+  TaskState? _selectedState = TaskState.toDo;
 
   void _resetForm() {
     _formKey.currentState!.reset();
@@ -30,7 +30,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
 
     setState(() {
       selectedDate = null;
-      _selectedState = 'To Do';
+      _selectedState = TaskState.toDo;
     });
   }
 
@@ -95,19 +95,19 @@ class _NewTaskFormState extends State<NewTaskForm> {
             controller: taskRecurrence,
           ),
           SizedBox(height: 28),
-          DropdownButtonFormField<String>(
+          DropdownButtonFormField<TaskState>(
             style: Theme.of(context).textTheme.bodyMedium,
             decoration: InputDecoration(
               labelText: 'Status',
               border: OutlineInputBorder(),
             ),
-            initialValue: 'To Do',
-            items: statesList
-              .map((option) => DropdownMenuItem(
-                value: option,
-                child: Text(option),
-              ))
-              .toList(),
+            initialValue: TaskState.toDo,
+            items: TaskState.values.map((state) {
+              return DropdownMenuItem(
+                value: state,
+                child: Text(state.label),
+              );
+            }).toList(),
             onChanged: (value) {
               setState(() {
                 _selectedState = value;
@@ -143,7 +143,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
                         dueDate: selectedDate!,
                         recurrence: int.parse(taskRecurrence.text),
                         state: _selectedState!,
-                      ),                      
+                      ),
                     );
 
                     if (!context.mounted) return;

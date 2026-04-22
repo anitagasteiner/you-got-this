@@ -20,7 +20,7 @@ class FirestoreService {
       'name': task.name,
       'dueDate': task.dueDate,
       'recurrence': task.recurrence,
-      'state': task.state,
+      'state': task.state.name,
     });
   }
 

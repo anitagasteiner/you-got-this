@@ -60,7 +60,7 @@ class TasksScreen extends StatelessWidget {
 
                   final tasks = snapshot.data!;
 
-                  final filteredTasks = state == null
+                  final filteredTasks = (state == null || state == 'All')
                     ? tasks
                     : tasks.where((task) => task.state == state).toList();
 

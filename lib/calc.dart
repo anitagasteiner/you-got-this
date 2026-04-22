@@ -1,4 +1,3 @@
-import 'data/tasks_data.dart';
 import './models/task_model.dart';
 
 String firstName = 'Anita';

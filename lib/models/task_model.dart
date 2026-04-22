@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'task_state.dart';
 
 class TaskModel {
   final String name;
   final DateTime dueDate;
   final int recurrence; // in Tagen
-  final String state;
+  final TaskState state;
 
   TaskModel({
     required this.name,
@@ -20,7 +21,9 @@ class TaskModel {
         name: data['name'] ?? '',
         dueDate: (data['dueDate'] as Timestamp).toDate(),
         recurrence: data['recurrence'] ?? 0,
-        state: data['state'] ?? '',
+        state: TaskState.values.firstWhere(
+          (e) => e.name == data['state'],
+        ),
       );
     }
     
