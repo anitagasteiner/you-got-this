@@ -15,12 +15,12 @@ class FirestoreService {
   }
 
   // Add Task
-  Future<void> addTask(String name, DateTime dueDate, int recurrence, String state) {
+  Future<void> addTask(TaskModel task) {
     return _db.collection('tasks').add({
-      'name': name,
-      'dueDate': dueDate,
-      'recurrence': recurrence,
-      'state': state,
+      'name': task.name,
+      'dueDate': task.dueDate,
+      'recurrence': task.recurrence,
+      'state': task.state,
     });
   }
 

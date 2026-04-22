@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import '../services/firestore_service.dart';
 // import '../common/colors.dart';
+import '../models/task_model.dart';
 import 'button_widget.dart';
 
 
@@ -20,6 +23,17 @@ class _NewTaskFormState extends State<NewTaskForm> {
   String? _selectedState = 'To Do';  
   List<String> statesList = ['Done', 'Done Recently', 'Still Fine', 'To Do Soon', 'To Do'];
 
+  void _resetForm() {
+    _formKey.currentState!.reset();
+    taskName.clear();
+    taskRecurrence.clear();
+
+    setState(() {
+      selectedDate = null;
+      _selectedState = 'To Do';
+    });
+  }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
@@ -30,6 +44,8 @@ class _NewTaskFormState extends State<NewTaskForm> {
 
   @override
   Widget build(BuildContext context) {
+    final firestore = context.read<FirestoreService>();
+
     return Form(
       key: _formKey,
       child: Column(
@@ -110,31 +126,39 @@ class _NewTaskFormState extends State<NewTaskForm> {
             children: [
               BasicButton(
                 text: 'Leeren',
-                onPressed: () {
-                  setState(() {
-                    _formKey.currentState!.reset();
-                    taskName.clear();
-                    taskRecurrence.clear();
-                  });
-                },
+                onPressed: _resetForm,
                 icon: Icons.remove_circle_rounded,
               ),
               BasicButton(
                 text: 'OK',
-                onPressed: () {
-                  // Validate will return true if the form is valid, or false if
-                  // the form is invalid.
+                onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    // Process data
-                    // ScaffoldMessenger.of(context).showSnackBar(
-                    //   SnackBar(content: Text('Daten werden verarbeitet.')),
-                    // );
+                    if (selectedDate == null || _selectedState == null) {
+                      return;
+                    }
+                    
+                    await firestore.addTask(
+                      TaskModel(
+                        name: taskName.text,
+                        dueDate: selectedDate!,
+                        recurrence: int.parse(taskRecurrence.text),
+                        state: _selectedState!,
+                      ),                      
+                    );
+
+                    if (!context.mounted) return;
+
+                    _resetForm();
+                   
                     showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
+                          // content: Text(
+                          //   'Dein neuer Task wurde gespeichert:\n${taskName.text} ist am ${DateFormat('EEEE, d. MMM', 'de').format(selectedDate!)}, zum ersten Mal fällig und dann alle ${taskRecurrence.text} Tage.\nMomentaner Status: ${_selectedState!}'
+                          // ),
                           content: Text(
-                            'Dein neuer Task wurde gespeichert:\n${taskName.text} ist am ${DateFormat('EEEE, d. MMM', 'de').format(selectedDate!)}, zum ersten Mal fällig und dann alle ${taskRecurrence.text} Tage.\nMomentaner Status: ${_selectedState!}'
+                            'Dein neuer Task wurde gespeichert.'
                           ),
                         );
                       },
