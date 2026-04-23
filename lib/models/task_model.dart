@@ -6,6 +6,7 @@ import 'task_state.dart';
 
 class TaskModel {
 
+  final String id;
   final String name;
   final DateTime dueDate;
   final int recurrence; // in Tagen
@@ -13,6 +14,7 @@ class TaskModel {
 
   // Constructor
   TaskModel({
+    required this.id,
     required this.name,
     required this.dueDate,
     required this.recurrence,
@@ -31,6 +33,7 @@ class TaskModel {
     final data = doc.data() as Map<String, dynamic>;
 
     return TaskModel(
+      id: doc.id,
       name: data['name'] ?? '', // Fallback to empty string if field is missing.
       dueDate: (data['dueDate'] as Timestamp).toDate(), // Firestore Timestamp is converted into DateTime.
       recurrence: data['recurrence'] ?? 1, // Default: 1 day.

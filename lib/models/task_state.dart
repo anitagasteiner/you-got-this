@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+
 // Defines the status of a task as enum.
 enum TaskState {
   done,
@@ -13,15 +16,15 @@ extension TaskStateX on TaskState {
   String get label {
     switch (this) {
       case TaskState.done:
-        return 'Done';
+        return 'done :)))';
       case TaskState.doneRecently:
-        return 'Done Recently';
+        return 'just done :))';
       case TaskState.stillFine:
-        return 'Still Fine';
+        return 'all good :)';
       case TaskState.toDoSoon:
-        return 'To Do Soon';
+        return 'next -_-';
       case TaskState.toDo:
-        return 'To Do';
+        return 'to do 0_0';
     }
   }
 }

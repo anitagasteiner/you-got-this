@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                 final tasks = snapshot.data!;
                 return LayoutBuilder(
                   builder: (context, constraints) {
-                    final width = constraints.maxWidth.clamp(300.0, 400.0);
+                    final width = constraints.maxWidth.clamp(310.0, 400.0);
                     return SizedBox(
                       width: width,
                       child: MouseRegion(

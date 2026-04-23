@@ -47,8 +47,8 @@ class _PieChartOverviewState extends State<PieChartOverview> {
         child: PieChart(
           PieChartData(
             borderData: FlBorderData(show: false),
-            sectionsSpace: 0,
-            centerSpaceRadius: 36,
+            sectionsSpace: 6, //0,
+            centerSpaceRadius: 18, //36,
             pieTouchData: PieTouchData(
               touchCallback: (FlTouchEvent event, pieTouchResponse) {
                 if (event is! FlTapDownEvent) {
