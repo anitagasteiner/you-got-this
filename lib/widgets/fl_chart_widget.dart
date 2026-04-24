@@ -47,8 +47,11 @@ class _PieChartOverviewState extends State<PieChartOverview> {
         child: PieChart(
           PieChartData(
             borderData: FlBorderData(show: false),
-            sectionsSpace: 6, //0,
-            centerSpaceRadius: 18, //36,
+            sectionsSpace: 2, //6, //0,
+            centerSpaceRadius: double.infinity,
+            centerSpaceColor: BaseColors.light,
+            startDegreeOffset: 300,
+            //centerSpaceRadius: 18, //36,
             pieTouchData: PieTouchData(
               touchCallback: (FlTouchEvent event, pieTouchResponse) {
                 if (event is! FlTapDownEvent) {
@@ -96,6 +99,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
           fontWeight: FontWeight.w600,
           color: BaseColors.dark,
         ),
+        cornerRadius: 4,
       );
     }).toList();
   }

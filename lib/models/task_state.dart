@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-
-
 // Defines the status of a task as enum.
 enum TaskState {
   done,
@@ -24,7 +21,7 @@ extension TaskStateX on TaskState {
       case TaskState.toDoSoon:
         return 'next -_-';
       case TaskState.toDo:
-        return 'to do 0_0';
+        return 'to do !_!'; //0_0';
     }
   }
 }
