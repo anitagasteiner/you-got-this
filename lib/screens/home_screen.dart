@@ -21,106 +21,108 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarTop(),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            SizedBox(height: 5),
-            Text(
-              greet(),
-              style: Theme.of(context).textTheme.titleLarge,
-              ),
-            SizedBox(height: 25),
-            Text(
-              'Das ist deine Task-Übersicht:',
-              style: Theme.of(context).textTheme.bodyLarge,
-              textAlign: TextAlign.center,
-              ),
-            SizedBox(height: 16),
-            StreamBuilder<List<TaskModel>>( // Subscribes to Firestore via a stream; rebuilds UI automatically when data changes.
-              stream: context.read<FirestoreService>().getTasks(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(BaseColors.main),
-                    backgroundColor: BaseColors.accent,
-                    strokeWidth: 12,
-                    strokeCap: StrokeCap.round,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              SizedBox(height: 5),
+              Text(
+                greet(),
+                style: Theme.of(context).textTheme.titleLarge,
+                ),
+              SizedBox(height: 25),
+              Text(
+                'Das ist deine Task-Übersicht:',
+                style: Theme.of(context).textTheme.bodyLarge,
+                textAlign: TextAlign.center,
+                ),
+              SizedBox(height: 16),
+              StreamBuilder<List<TaskModel>>( // Subscribes to Firestore via a stream; rebuilds UI automatically when data changes.
+                stream: context.read<FirestoreService>().getTasks(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(BaseColors.main),
+                      backgroundColor: BaseColors.accent,
+                      strokeWidth: 12,
+                      strokeCap: StrokeCap.round,
+                    );
+                  }
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Text('Keine Tasks vorhanden.');
+                  }
+                  if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  }
+                  final tasks = snapshot.data!;
+                  return LayoutBuilder(
+                    builder: (context, constraints) {
+                      final width = constraints.maxWidth.clamp(310.0, 400.0);
+                      return SizedBox(
+                        width: width,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: PieChartOverview(
+                            width: width,
+                            tasks: tasks,
+                          ),
+                        ),
+                      );
+                    },
                   );
                 }
-                if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Text('Keine Tasks vorhanden.');
-                }
-                if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                }
-                final tasks = snapshot.data!;
-                return LayoutBuilder(
-                  builder: (context, constraints) {
-                    final width = constraints.maxWidth.clamp(310.0, 400.0);
-                    return SizedBox(
-                      width: width,
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: PieChartOverview(
-                          width: width,
-                          tasks: tasks,
-                        ),
-                      ),
-                    );
-                  },
-                );
-              }
-            ),
-            SizedBox(height: 16),
-            SizedBox(
-              width: 250,
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.touch_app,
-                    size: 30,
-                    color: BaseColors.dark,
-                    semanticLabel: '',
-                  ),
-                  Expanded(
-                    child: Text(
-                      'Tippe auf eine Kategorie, und du gelangst zu deren Tasks.',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              SizedBox(height: 16),
+              SizedBox(
+                width: 250,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.touch_app,
+                      size: 30,
+                      color: BaseColors.dark,
+                      semanticLabel: '',
                     ),
+                    Expanded(
+                      child: Text(
+                        'Tippe auf eine Kategorie, und du gelangst zu deren Tasks.',
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  BasicButton(
+                    text: 'Alle Tasks',
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/tasks',
+                        arguments: 'All'
+                      );
+                    },
+                    icon: Icons.assignment,
+                  ),
+                  BasicButton(
+                    text: 'Neuer Task',
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/new',
+                      );
+                    },
+                    icon: Icons.add_circle_rounded,
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 32),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                BasicButton(
-                  text: 'Alle Tasks',
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/tasks',
-                      arguments: 'All'
-                    );
-                  },
-                  icon: Icons.assignment,
-                ),
-                BasicButton(
-                  text: 'Neuer Task',
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      '/new',
-                    );
-                  },
-                  icon: Icons.add_circle_rounded,
-                ),
-              ],
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const AppBarBottom(),
