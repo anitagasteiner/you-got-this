@@ -8,7 +8,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'services/firestore_service.dart';
 import 'firebase_options.dart';
-import './common/colors.dart';
+import './theme/app_theme.dart';
+// import './common/colors.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/new_task_screen.dart';
@@ -56,21 +57,26 @@ class MainApp extends StatelessWidget {
         // Locale('en'),
       ],
       locale: const Locale('de'),
-      theme: ThemeData(
-        fontFamily: 'Montserrat',
-        scaffoldBackgroundColor: BaseColors.light,
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(color: BaseColors.dark),
-          bodyMedium: TextStyle(color: BaseColors.dark),
-          titleLarge: TextStyle(color: BaseColors.dark),
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          hintStyle: TextStyle(
-            color: BaseColors.dark,
-            fontSize: 14,
-          ),
-        ),
-      ),
+      theme: AppTheme.main,
+      // theme: ThemeData(
+      //   fontFamily: 'Montserrat',
+      //   scaffoldBackgroundColor: BaseColors.light,
+      //   colorScheme: ColorScheme.fromSeed(
+      //     seedColor: BaseColors.light,
+      //     secondary: BtnColors.back,
+      //   ),
+      //   textTheme: TextTheme(
+      //     bodyLarge: TextStyle(color: BaseColors.dark),
+      //     bodyMedium: TextStyle(color: BaseColors.dark),
+      //     titleLarge: TextStyle(color: BaseColors.dark),
+      //   ),
+      //   inputDecorationTheme: InputDecorationTheme(
+      //     hintStyle: TextStyle(
+      //       color: BaseColors.dark,
+      //       fontSize: 14,
+      //     ),
+      //   ),
+      // ),
     );
   }
 

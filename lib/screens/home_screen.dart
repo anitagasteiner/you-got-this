@@ -1,3 +1,8 @@
+// Main Dashboard:
+// - Displays a greeting.
+// - Shows a chart overview of all tasks depending on their status.
+// - Provides navigation to all tasks and to creating a new task.
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/firestore_service.dart';
@@ -32,7 +37,7 @@ class HomeScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               ),
             SizedBox(height: 16),
-            StreamBuilder<List<TaskModel>>(
+            StreamBuilder<List<TaskModel>>( // Subscribes to Firestore via a stream; rebuilds UI automatically when data changes.
               stream: context.read<FirestoreService>().getTasks(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
