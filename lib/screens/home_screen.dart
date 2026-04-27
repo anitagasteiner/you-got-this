@@ -21,6 +21,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarTop(),
+
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -41,7 +42,12 @@ class HomeScreen extends StatelessWidget {
               stream: context.read<FirestoreService>().getTasks(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(BaseColors.main),
+                    backgroundColor: BaseColors.accent,
+                    strokeWidth: 12,
+                    strokeCap: StrokeCap.round,
+                  );
                 }
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Text('Keine Tasks vorhanden');
@@ -63,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                   },
                 );
               }
-            ),            
+            ),
             SizedBox(height: 16),
             SizedBox(
               width: 250,
