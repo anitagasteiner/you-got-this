@@ -21,7 +21,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarTop(),
-
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -50,7 +49,10 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
                 if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Text('Keine Tasks vorhanden');
+                  return const Text('Keine Tasks vorhanden.');
+                }
+                if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
                 }
                 final tasks = snapshot.data!;
                 return LayoutBuilder(
@@ -118,7 +120,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            
           ],
         ),
       ),
