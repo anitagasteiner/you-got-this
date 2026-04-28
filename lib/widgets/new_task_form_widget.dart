@@ -68,9 +68,11 @@ class _NewTaskFormState extends State<NewTaskForm> {
             dateFormat: DateFormat('dd.MM.yyyy', 'de'),
             style: Theme.of(context).textTheme.bodyLarge,
             decoration: const InputDecoration(hintText: 'Fälligkeitsdatum'),
+            firstDate: DateTime.now(), // prevents date in the past
+            initialPickerDateTime: DateTime.now(),
             // firstDate: DateTime.now().add(const Duration(days: 10)),
             // lastDate: DateTime.now().add(const Duration(days: 40)),
-            initialPickerDateTime: DateTime.now().add(const Duration(days: 0)),
+            // initialPickerDateTime: DateTime.now().add(const Duration(days: 7)),
             onChanged: (DateTime? value) {
               setState(() {
                 selectedDate = value;
@@ -79,6 +81,12 @@ class _NewTaskFormState extends State<NewTaskForm> {
             validator: (DateTime? value) {
               if (value == null) {
                 return 'Wähle ein erstes Fälligkeitsdatum.';
+              }
+              final now = DateTime.now();
+              final today = DateTime(now.year, now.month, now.day);
+              final selected = DateTime(value.year, value.month, value.day);
+              if (selected.isBefore(today)) {
+                return 'Das erste Fälligkeitsdatum darf nicht in der Vergangenheit liegen.';
               }
               return null;
             },
