@@ -50,7 +50,15 @@ class HomeScreen extends StatelessWidget {
                     );
                   }
                   if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Text('Keine Tasks vorhanden.');
+                    return Text(
+                      'Es sind noch keine Tasks vorhanden. Verwende den Button unten, um neue Tasks hinzuzufügen.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                        color: BaseColors.main,
+                      ),
+                    );
                   }
                   if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
