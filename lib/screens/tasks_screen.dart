@@ -14,7 +14,7 @@ import '../models/task_states.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/stacked_bar_widget.dart';
-import '../calc.dart';
+// import '../calc.dart';
 
 
 class TasksScreen extends StatelessWidget {
@@ -35,6 +35,7 @@ class TasksScreen extends StatelessWidget {
             SizedBox(height: 5),
             // Dynamic title:
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   state == null
@@ -77,10 +78,14 @@ class TasksScreen extends StatelessWidget {
                     );
                   }
                   if (!snapshot.hasData) {
-                    return const Center(child: Text('Keine Daten'));
+                    return const Center(child: Text('Keine Tasks vorhanden.'));
                   }
 
                   final tasks = snapshot.data!; // Tasks list processing
+
+                  if (tasks.isEmpty) {
+                    return const Center(child: Text('Keine Tasks vorhanden.'));
+                  }
 
                   // If no filter -> show all tasks, otherwise -> filter by state:
                   final filteredTasks = (state == null)
@@ -102,7 +107,7 @@ class TasksScreen extends StatelessWidget {
                             );
                           },
                         ),
-                      ),
+                      ),                      
                       SizedBox(height: 15),
                       Text('Status wechseln:'),
                       StackedBar(tasks: tasks),

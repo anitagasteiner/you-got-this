@@ -13,17 +13,23 @@ String greet() {
   return 'Hallo, $firstName!';
 }
 
-int countByState(List<TaskModel> tasks, String state) {
+int countByState(List<TaskModel> tasks, TaskStates state) {
   return tasks.where((task) => TaskStateCalculator.calculate(task) == state).length;
 }
 
-double getWidth(List<TaskModel> tasks, String state) {
+double getWidth(List<TaskModel> tasks, TaskStates state) {
   int tasksAmount = tasks.length;
+  if (tasksAmount == 0) {
+    return 0;
+  }
   return 250/tasksAmount*countByState(tasks, state);
 }
 
-double getValue(List<TaskModel> tasks, String state) {
+double getValue(List<TaskModel> tasks, TaskStates state) {
   int tasksAmount = tasks.length;
+  if (tasksAmount == 0) {
+    return 0;
+  }
   return 250/tasksAmount*countByState(tasks, state);
 }
 

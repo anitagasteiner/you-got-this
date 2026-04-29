@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import '../models/task_model.dart';
+import '../models/task_states.dart';
 import '../calc.dart';
 
 class ColorBoxLink extends StatelessWidget {
   final Color color;
   final VoidCallback onTap;
-  final String category;
   final List<TaskModel> tasks;
+  final TaskStates state;
 
   const ColorBoxLink({
     super.key,
     required this.color,
     required this.onTap,
-    required this.category,
     required this.tasks,
+    required this.state,
   });
 
   @override
@@ -23,7 +24,7 @@ class ColorBoxLink extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: SizedBox(
-          width: getWidth(tasks, category),
+          width: getWidth(tasks, state),
           height: 35,
         ),
       ),

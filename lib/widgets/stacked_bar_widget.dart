@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'color_box_link_widget.dart';
 import '../common/colors.dart';
 import '../models/task_model.dart';
+import '../models/task_states.dart';
 
 
 class StackedBar extends StatelessWidget {
@@ -23,11 +24,11 @@ class StackedBar extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 '/tasks',
-                arguments: 'Done',
+                arguments: TaskStates.done,
               );
             },
-            category: 'Done',
             tasks: tasks,
+            state: TaskStates.done,
           ),
           ColorBoxLink(
             color: ScaleColors.doneRecently,
@@ -35,11 +36,11 @@ class StackedBar extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 '/tasks',
-                arguments: 'Done Recently',
+                arguments: TaskStates.doneRecently,
               );
             },
-            category: 'Done Recently',
             tasks: tasks,
+            state: TaskStates.doneRecently,
           ),
           ColorBoxLink(
             color: ScaleColors.stillFine,
@@ -47,11 +48,11 @@ class StackedBar extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 '/tasks',
-                arguments: 'Still Fine',
+                arguments: TaskStates.stillFine,
               );
             },
-            category: 'Still Fine',
             tasks: tasks,
+            state: TaskStates.stillFine,
           ),
           ColorBoxLink(
             color: ScaleColors.toDoSoon,
@@ -59,11 +60,11 @@ class StackedBar extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 '/tasks',
-                arguments: 'To Do Soon',
+                arguments: TaskStates.toDoSoon,
               );
             },
-            category: 'To Do Soon',
             tasks: tasks,
+            state: TaskStates.toDoSoon,
           ),
           ColorBoxLink(
             color: ScaleColors.toDo,
@@ -71,11 +72,11 @@ class StackedBar extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 '/tasks',
-                arguments: 'To Do',
+                arguments: TaskStates.toDo,
               );
             },
-            category: 'To Do',
             tasks: tasks,
+            state: TaskStates.toDo,
           ),
         ],
       );
