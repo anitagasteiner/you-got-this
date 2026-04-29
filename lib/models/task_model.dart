@@ -46,5 +46,19 @@ class TaskModel {
       'recurrence': recurrence,
     };
   }
+
+  TaskModel copyWith({
+    String? id,
+    String? name,
+    DateTime? dueDate,
+    int? recurrence,
+  }) {
+    return TaskModel(
+      id: id?? this.id,
+      name: name ?? this.name,
+      dueDate: dueDate ?? this.dueDate,
+      recurrence: recurrence?? this.recurrence,
+    );
+  }
     
 }

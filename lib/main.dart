@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'services/firestore_service.dart';
+import 'domain/task/task_service.dart';
 import 'firebase_options.dart';
 import './theme/app_theme.dart';
 // import './common/colors.dart';
@@ -27,8 +28,15 @@ Future<void> main() async {
   await initializeDateFormatting();
   await findSystemLocale();
   runApp(
-    Provider(
-      create: (_) => FirestoreService(),
+    MultiProvider(
+      providers: [
+        Provider<FirestoreService>(
+          create: (_) => FirestoreService(),
+        ),
+        ProxyProvider<FirestoreService, TaskService>(
+          update: (_, firestore, _) => TaskService(firestore),
+        ),
+      ],
       child: const MainApp(),
     ),
   );

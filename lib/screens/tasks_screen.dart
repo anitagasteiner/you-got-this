@@ -9,12 +9,12 @@ import 'package:provider/provider.dart';
 import '../services/firestore_service.dart';
 import '../common/colors.dart';
 import '../domain/task/task_state_calculator.dart';
+import '../domain/task/task_service.dart';
 import '../models/task_model.dart';
 import '../models/task_states.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/stacked_bar_widget.dart';
-// import '../calc.dart';
 
 
 class TasksScreen extends StatelessWidget {
@@ -25,6 +25,7 @@ class TasksScreen extends StatelessWidget {
 
     final state = ModalRoute.of(context)?.settings.arguments as TaskStates?; // Retrieves the argument passed via navigation.
     final firestore = context.read<FirestoreService>(); // Gets the Firestore service from the Provider. Used to fetch tasks.
+    final taskService = context.read<TaskService>();
 
     return Scaffold(
       appBar: const AppBarTop(),
@@ -99,9 +100,18 @@ class TasksScreen extends StatelessWidget {
                           itemCount: filteredTasks.length,
                           itemBuilder: (context, index) {
                             final task = filteredTasks[index];
+                            final isDone = TaskStateCalculator.calculate(task) == TaskStates.done;
 
                             return ListTile(
-                              leading: const Icon(Icons.check_box_outline_blank),
+                              leading: Checkbox(
+                                value: isDone,
+                                onChanged: (_) async {
+                                  if (!isDone) {
+                                    await taskService.completeTask(task);
+                                  }                                  
+                                },
+                              ),
+                              // leading: const Icon(Icons.check_box_outline_blank),
                               title: Text(task.name),
                               subtitle: Text('Alle ${task.recurrence} Tage'),
                             );
