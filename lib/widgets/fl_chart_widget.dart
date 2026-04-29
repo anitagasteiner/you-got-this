@@ -40,7 +40,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
 
   @override
   Widget build(BuildContext context) {
-    final states = TaskStates.values;
+    final statesStock = TaskStates.values;
     
     return Center(
       child: AspectRatio(
@@ -62,7 +62,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
                   return;
                 }
                 final index = pieTouchResponse.touchedSection!.touchedSectionIndex;
-                final state = states[index];
+                final state = statesStock[index];
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   if (!mounted) {
                     return;
@@ -75,17 +75,17 @@ class _PieChartOverviewState extends State<PieChartOverview> {
                 });
               },
             ),
-            sections: _buildSections(states),
+            sections: _buildSections(statesStock),
           ),
         ),
       ),
     );
   }
 
-  List<PieChartSectionData> _buildSections(List<TaskStates> states) {
+  List<PieChartSectionData> _buildSections(List<TaskStates> statesStock) {
     final radius = widget.width / 2.8;
 
-    return states.map((state) {
+    return statesStock.map((state) {
       final count = widget.tasks
         .where((task) => TaskStateCalculator.calculate(task) == state)
         .length;

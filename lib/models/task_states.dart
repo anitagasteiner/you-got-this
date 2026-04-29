@@ -9,7 +9,7 @@ enum TaskStates {
 
 // Expands the enum with additional logic.
 // Gives back user friendly wording.
-extension TaskStateX on TaskStates {
+extension TaskStatesX on TaskStates {
   String get label {
     switch (this) {
       case TaskStates.done:
