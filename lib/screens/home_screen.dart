@@ -112,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                       Navigator.pushNamed(
                         context,
                         '/tasks',
-                        arguments: 'All'
+                        arguments: null
                       );
                     },
                     icon: Icons.assignment,

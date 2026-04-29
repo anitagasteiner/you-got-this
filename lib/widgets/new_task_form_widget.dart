@@ -3,11 +3,8 @@ import 'package:date_field/date_field.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../services/firestore_service.dart';
-// import '../common/colors.dart';
 import '../models/task_model.dart';
-import '../models/task_state.dart';
 import 'button_widget.dart';
-import '../calc.dart';
 
 
 class NewTaskForm extends StatefulWidget {
@@ -22,7 +19,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
   final taskName = TextEditingController();
   final taskRecurrence = TextEditingController();
   DateTime? selectedDate;
-  TaskState? _selectedState = TaskState.toDo;
+  //TaskState? _selectedState = TaskState.toDo;
 
   void _resetForm() {
     _formKey.currentState!.reset();
@@ -31,7 +28,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
 
     setState(() {
       selectedDate = null;
-      _selectedState = TaskState.toDo;
+      //_selectedState = TaskState.toDo;
     });
   }
 
@@ -142,7 +139,7 @@ class _NewTaskFormState extends State<NewTaskForm> {
                 text: 'OK',
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    if (selectedDate == null || _selectedState == null) {
+                    if (selectedDate == null) {
                       return;
                     }
 
@@ -155,10 +152,12 @@ class _NewTaskFormState extends State<NewTaskForm> {
                         dueDate: selectedDate!,
                         recurrence: recurrence,
                         // recurrence: int.parse(taskRecurrence.text),
-                        state: getStatus(selectedDate!, recurrence),
+                        //state: getState(selectedDate!, recurrence),
                         // state: _selectedState!,
                       ),
                     );
+
+                    // dart(todo) state darf nicht gespeichert werden, muss laufend angepasst werden!!!f
 
                     if (!context.mounted) return;
 

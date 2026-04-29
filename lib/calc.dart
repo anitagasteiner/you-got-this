@@ -1,5 +1,6 @@
 import './models/task_model.dart';
-import './models/task_state.dart';
+import './domain/task/task_state_calculator.dart';
+// import 'models/task_states.dart';
 
 String firstName = 'Anita';
 String lastName = 'Gasteiner';
@@ -13,7 +14,7 @@ String greet() {
 }
 
 int countByState(List<TaskModel> tasks, String state) {
-  return tasks.where((task) => task.state == state).length;
+  return tasks.where((task) => TaskStateCalculator.calculate(task) == state).length;
 }
 
 double getWidth(List<TaskModel> tasks, String state) {
@@ -26,30 +27,29 @@ double getValue(List<TaskModel> tasks, String state) {
   return 250/tasksAmount*countByState(tasks, state);
 }
 
-TaskState getStatus(DateTime dueDate, int recurrence) {
-  int turningPointDoneRecently = recurrence ~/ 4;
-  int turningPointStillFine = recurrence ~/4*2;
-  int turningPointToDoSoon = recurrence ~/4*3;
-  int turningPointToDo = recurrence;
-  final today = removeTime(DateTime.now());
-  final due = removeTime(dueDate);
-  final difference = due.difference(today).inDays;
-  if (difference < turningPointDoneRecently) {
-    return TaskState.done;
-  }
-  if (difference < turningPointStillFine) {
-    return TaskState.doneRecently;
-  }
-  if (difference < turningPointToDoSoon) {
-    return TaskState.stillFine;
-  }
-  if (difference < turningPointToDo) {
-    return TaskState.toDoSoon;
-  }
-  else {
-    return TaskState.toDo;
-  }
-  
-}
+// TaskStates getState(DateTime dueDate, int recurrence) {
+//   int turningPointDoneRecently = recurrence ~/ 4;
+//   int turningPointStillFine = recurrence ~/4*2;
+//   int turningPointToDoSoon = recurrence ~/4*3;
+//   int turningPointToDo = recurrence;
+//   final today = removeTime(DateTime.now());
+//   final due = removeTime(dueDate);
+//   final difference = due.difference(today).inDays;
+//   if (difference < turningPointDoneRecently) {
+//     return TaskStates.done;
+//   }
+//   if (difference < turningPointStillFine) {
+//     return TaskStates.doneRecently;
+//   }
+//   if (difference < turningPointToDoSoon) {
+//     return TaskStates.stillFine;
+//   }
+//   if (difference < turningPointToDo) {
+//     return TaskStates.toDoSoon;
+//   }
+//   else {
+//     return TaskStates.toDo;
+//   }  
+// }
 
-DateTime removeTime(DateTime d) => DateTime(d.year, d.month, d.day);
+// DateTime removeTime(DateTime d) => DateTime(d.year, d.month, d.day);

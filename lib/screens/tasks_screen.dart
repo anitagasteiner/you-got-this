@@ -1,7 +1,14 @@
+// Displays a list of tasks, optionally filtered by their state. Includes:
+// - Dynamic title based on the selected state.
+// - Scrollable task list.
+// - Bar chart to change the displayed tasks depending on their state.
+// - Navigation back to home screen.
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/firestore_service.dart';
-// import '../data/tasks_data.dart';
+import '../common/colors.dart';
+import '../domain/task/task_state_calculator.dart';
 import '../models/task_model.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
@@ -14,8 +21,8 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final state = ModalRoute.of(context)?.settings.arguments as String?;
-    final firestore = context.read<FirestoreService>();
+    final state = ModalRoute.of(context)?.settings.arguments as String?; // Retrieves the argument passed via navigation.
+    final firestore = context.read<FirestoreService>(); // Gets the Firestore service from the Provider. Used to fetch tasks.
 
     return Scaffold(
       appBar: const AppBarTop(),
@@ -24,6 +31,7 @@ class TasksScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 5),
+            // Dynamic title:
             Row(
               children: [
                 Text(
@@ -47,22 +55,33 @@ class TasksScreen extends StatelessWidget {
                   ),
               ],
             ),
+            // Main Content with StreamBuilder:
+            // - Listens to real-time Firestore updates.
+            // - Rebuilds UI when data changes.
             Expanded(
               child: StreamBuilder<List<TaskModel>>(
                 stream: firestore.getTasks(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child:CircularProgressIndicator());
+                    return Center(
+                      child: CircularProgressIndicator( // Loading Spinner
+                        valueColor: AlwaysStoppedAnimation(BaseColors.main),
+                        backgroundColor: BaseColors.accent,
+                        strokeWidth: 12,
+                        strokeCap: StrokeCap.round,
+                      )
+                    );
                   }
                   if (!snapshot.hasData) {
                     return const Center(child: Text('Keine Daten'));
                   }
 
-                  final tasks = snapshot.data!;
+                  final tasks = snapshot.data!; // Tasks list processing
 
-                  final filteredTasks = (state == null || state == 'All')
+                  // If no filter -> show all tasks, otherwise -> filter by state:
+                  final filteredTasks = (state == null)
                     ? tasks
-                    : tasks.where((task) => task.state == state).toList();
+                    : tasks.where((task) => TaskStateCalculator.calculate(task) == state).toList();
 
                   return Column(
                     children: [

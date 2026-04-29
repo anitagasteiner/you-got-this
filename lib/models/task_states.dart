@@ -1,5 +1,5 @@
 // Defines the status of a task as enum.
-enum TaskState {
+enum TaskStates {
   done,
   doneRecently,
   stillFine,
@@ -9,18 +9,18 @@ enum TaskState {
 
 // Expands the enum with additional logic.
 // Gives back user friendly wording.
-extension TaskStateX on TaskState {
+extension TaskStateX on TaskStates {
   String get label {
     switch (this) {
-      case TaskState.done:
+      case TaskStates.done:
         return 'done :)))';
-      case TaskState.doneRecently:
+      case TaskStates.doneRecently:
         return 'just done :))';
-      case TaskState.stillFine:
+      case TaskStates.stillFine:
         return 'all good :)';
-      case TaskState.toDoSoon:
+      case TaskStates.toDoSoon:
         return 'next -_-';
-      case TaskState.toDo:
+      case TaskStates.toDo:
         return 'to do !_!'; //0_0';
     }
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-// import '../data/chart_categories_data.dart';
 import '../common/colors.dart';
+import '../domain/task/task_state_calculator.dart';
 import '../models/task_model.dart';
-import '../models/task_state.dart';
+import '../models/task_states.dart';
+// import '../calc.dart';
 
 
 class PieChartOverview extends StatefulWidget {
@@ -22,24 +23,24 @@ class PieChartOverview extends StatefulWidget {
 
 class _PieChartOverviewState extends State<PieChartOverview> {
 
-  Color _colorForState(TaskState state) {
+  Color _colorForState(TaskStates state) {
     switch (state) {
-      case TaskState.done:
+      case TaskStates.done:
         return ScaleColors.done;
-      case TaskState.doneRecently:
+      case TaskStates.doneRecently:
         return ScaleColors.doneRecently;
-      case TaskState.stillFine:
+      case TaskStates.stillFine:
         return ScaleColors.stillFine;
-      case TaskState.toDoSoon:
+      case TaskStates.toDoSoon:
         return ScaleColors.toDoSoon;
-      case TaskState.toDo:
+      case TaskStates.toDo:
         return ScaleColors.toDo;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final states = TaskState.values;
+    final states = TaskStates.values;
     
     return Center(
       child: AspectRatio(
@@ -81,12 +82,12 @@ class _PieChartOverviewState extends State<PieChartOverview> {
     );
   }
 
-  List<PieChartSectionData> _buildSections(List<TaskState> states) {
+  List<PieChartSectionData> _buildSections(List<TaskStates> states) {
     final radius = widget.width / 2.8;
 
     return states.map((state) {
       final count = widget.tasks
-        .where((task) => task.state == state)
+        .where((task) => TaskStateCalculator.calculate(task) == state)
         .length;
 
       return PieChartSectionData(
