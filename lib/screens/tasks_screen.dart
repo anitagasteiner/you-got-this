@@ -10,9 +10,11 @@ import '../services/firestore_service.dart';
 import '../common/colors.dart';
 import '../domain/task/task_state_calculator.dart';
 import '../models/task_model.dart';
+import '../models/task_states.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/stacked_bar_widget.dart';
+import '../calc.dart';
 
 
 class TasksScreen extends StatelessWidget {
@@ -21,7 +23,7 @@ class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final state = ModalRoute.of(context)?.settings.arguments as String?; // Retrieves the argument passed via navigation.
+    final state = ModalRoute.of(context)?.settings.arguments as TaskStates?; // Retrieves the argument passed via navigation.
     final firestore = context.read<FirestoreService>(); // Gets the Firestore service from the Provider. Used to fetch tasks.
 
     return Scaffold(
@@ -35,7 +37,7 @@ class TasksScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  state == 'All'
+                  state == null
                     ? 'Alle Tasks'
                     : 'Tasks ',
                   style: TextStyle(
@@ -43,9 +45,11 @@ class TasksScreen extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-                if (state != 'All')
+                if (state != null)
                   Text(
-                    '$state',
+                    state.label,
+                    // getTextFromState(state),
+                    // '$state',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
@@ -104,27 +108,11 @@ class TasksScreen extends StatelessWidget {
                       StackedBar(tasks: tasks),
                       SizedBox(height: 25),
                     ],
-                  );                  
+                  );
                    
                 },
               ),
             ),
-
-            // Expanded(
-            //   child: ListView(
-            //     children: (state == 'All'
-            //       ? tasks.values
-            //       : tasks.values.where((task) => task.state == state))
-            //     .map((task) {
-            //       return ListTile(
-            //         leading: const Icon(Icons.check_box_outline_blank),
-            //         title: Text(task.name),
-            //         subtitle: Text('Alle ${task.recurrence} Tage'),
-            //       );
-            //     }).toList(),
-            //   ),
-            // ),
-            
             BasicButton(
               text: 'Home',
               // onPressed: () {
