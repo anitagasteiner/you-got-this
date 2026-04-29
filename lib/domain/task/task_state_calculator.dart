@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import '../../models/task_model.dart';
 import '../../models/task_states.dart';
 
@@ -9,6 +10,7 @@ class TaskStateCalculator {
     int turningPointDoneRecently = task.recurrence ~/4*3;   // 3 -> DONE RECENTLY
     final now = DateTime.now();
     final difference = task.dueDate.difference(now).inDays;
+    debugPrint('${task.name}: difference $difference, turningPointToDoSoon $turningPointToDoSoon, turningPointStillFine $turningPointStillFine, turningPointDoneRecently $turningPointDoneRecently');
     if (difference <= 0) {
       return TaskStates.toDo;
     }
@@ -21,9 +23,7 @@ class TaskStateCalculator {
     if (difference <= turningPointDoneRecently) {
       return TaskStates.doneRecently;
     }
-    else {
-      return TaskStates.done;
-    }
+    return TaskStates.done;
   }
 }
 
