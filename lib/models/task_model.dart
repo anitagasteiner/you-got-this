@@ -1,7 +1,6 @@
 // Describes the structure of a task and how it is loaded from Firestore.
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'task_states_model.dart';
 
 
 class TaskModel {
@@ -10,7 +9,6 @@ class TaskModel {
   final String name;
   final DateTime dueDate;
   final int recurrence; // in Tagen
-  // final TaskState state;
 
   // Constructor
   TaskModel({
@@ -18,7 +16,6 @@ class TaskModel {
     required this.name,
     required this.dueDate,
     required this.recurrence,
-    // required this.state,
   });
 
   // Firestore Mapping
@@ -29,7 +26,7 @@ class TaskModel {
     // - doc.data() delivers the saved data of the document.
     // - The return value is dynamically typed.
     // - States that the Firestore data are a map of which the keys are strings and the values have random types.
-    // - Result: data['name], data['dueDate'], data['state']. -> Therefore, it can be accessed like a JSON object.
+    // - Result: data['name], data['dueDate'], data['recurrence']. -> Therefore, it can be accessed like a JSON object.
     final data = doc.data() as Map<String, dynamic>;
 
     return TaskModel(
@@ -37,12 +34,6 @@ class TaskModel {
       name: data['name'] ?? '', // Fallback to empty string if field is missing.
       dueDate: (data['dueDate'] as Timestamp).toDate(), // Firestore Timestamp is converted into DateTime.
       recurrence: data['recurrence'] ?? 1, // Default: 1 day.
-      //state: TaskState.values.firstWhere( // String from Firestore is mapped to Enum. -> Enums are a special kind of class used to represent a fixed number of constant values.
-      // - firstWhere searches in the list of TaskState values
-      // - Example Result: "state: TaskState.toDoSoon"
-      //  (e) => e.name == data['state'],
-      //  orElse: () => TaskState.toDo, // Fallback
-      // ),
     );
   }
 
@@ -53,7 +44,6 @@ class TaskModel {
       'name': name,
       'dueDate': dueDate,
       'recurrence': recurrence,
-      //'state': state.name, // State is an enum; .name gives back the string name of the enum.
     };
   }
     
