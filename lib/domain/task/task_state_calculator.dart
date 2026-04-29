@@ -20,7 +20,7 @@ class TaskStateCalculator {
     if (difference <= turningPointStillFine) {
       return TaskStates.stillFine;
     }
-    if (difference <= turningPointDoneRecently) {
+    if (difference < turningPointDoneRecently) {
       return TaskStates.doneRecently;
     }
     return TaskStates.done;
