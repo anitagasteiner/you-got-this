@@ -1,8 +1,8 @@
+import 'package:auto_hyphenating_text/auto_hyphenating_text.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl_standalone.dart'
   if (dart.library.html) 'package:intl/intl_browser.dart';
 import 'package:intl/date_symbol_data_local.dart';
-// import 'package:you_got_this/common/colors.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +10,6 @@ import 'services/firestore_service.dart';
 import 'domain/task/task_service.dart';
 import 'firebase_options.dart';
 import './theme/app_theme.dart';
-// import './common/colors.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/new_task_screen.dart';
@@ -27,6 +26,7 @@ Future<void> main() async {
   );
   await initializeDateFormatting();
   await findSystemLocale();
+  await initHyphenation();
   runApp(
     MultiProvider(
       providers: [

@@ -4,6 +4,7 @@
 // - Bar chart to change the displayed tasks depending on their state.
 // - Navigation back to home screen.
 
+import 'package:auto_hyphenating_text/auto_hyphenating_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -113,7 +114,7 @@ class TasksScreen extends StatelessWidget {
                                 },
                               ),
                               // leading: const Icon(Icons.check_box_outline_blank),
-                              title: Text(task.name),
+                              title: AutoHyphenatingText(task.name),
                               subtitle: Text('-> alle ${task.recurrence} Tage\n-> wieder am ${DateFormat('d. MMM yyyy', 'de_DE').format(task.dueDate)}'),
                             );
                           },
