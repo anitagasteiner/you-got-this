@@ -12,6 +12,7 @@ import '../calc.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/fl_chart_widget.dart';
 import '../widgets/button_widget.dart';
+import '../widgets/progress_circle_widget.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -42,12 +43,7 @@ class HomeScreen extends StatelessWidget {
                 stream: context.read<FirestoreService>().getTasks(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation(BaseColors.main),
-                      backgroundColor: BaseColors.accent,
-                      strokeWidth: 12,
-                      strokeCap: StrokeCap.round,
-                    );
+                    return ProgressCircle();
                   }
                   if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return Text(

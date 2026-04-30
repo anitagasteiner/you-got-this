@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../services/firestore_service.dart';
-import '../common/colors.dart';
 import '../domain/task/task_state_calculator.dart';
 import '../domain/task/task_service.dart';
 import '../models/task_model.dart';
@@ -17,6 +16,7 @@ import '../models/task_states.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/stacked_bar_widget.dart';
+import '../widgets/progress_circle_widget.dart';
 
 
 class TasksScreen extends StatelessWidget {
@@ -72,12 +72,7 @@ class TasksScreen extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
-                      child: CircularProgressIndicator( // Loading Spinner
-                        valueColor: AlwaysStoppedAnimation(BaseColors.main),
-                        backgroundColor: BaseColors.accent,
-                        strokeWidth: 12,
-                        strokeCap: StrokeCap.round,
-                      )
+                      child: ProgressCircle()
                     );
                   }
                   if (!snapshot.hasData) {
