@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../services/firestore_service.dart';
 import '../common/colors.dart';
 import '../domain/task/task_state_calculator.dart';
@@ -113,7 +114,7 @@ class TasksScreen extends StatelessWidget {
                               ),
                               // leading: const Icon(Icons.check_box_outline_blank),
                               title: Text(task.name),
-                              subtitle: Text('Alle ${task.recurrence} Tage'),
+                              subtitle: Text('-> alle ${task.recurrence} Tage\n-> wieder am ${DateFormat('d. MMM yyyy', 'de_DE').format(task.dueDate)}'),
                             );
                           },
                         ),
