@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                 stream: context.read<FirestoreService>().getTasks(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return ProgressCircle();
+                    return ProgressCircle(); // Loading Spinner
                   }
                   if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return Text(

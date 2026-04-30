@@ -8,11 +8,13 @@ import 'package:auto_hyphenating_text/auto_hyphenating_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:you_got_this/common/colors.dart';
 import '../services/firestore_service.dart';
 import '../domain/task/task_state_calculator.dart';
 import '../domain/task/task_service.dart';
 import '../models/task_model.dart';
 import '../models/task_states.dart';
+import '../models/task_state_colors.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/stacked_bar_widget.dart';
@@ -72,7 +74,7 @@ class TasksScreen extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
-                      child: ProgressCircle()
+                      child: ProgressCircle() // Loading Spinner
                     );
                   }
                   if (!snapshot.hasData) {
@@ -97,20 +99,63 @@ class TasksScreen extends StatelessWidget {
                           itemCount: filteredTasks.length,
                           itemBuilder: (context, index) {
                             final task = filteredTasks[index];
-                            final isDone = TaskStateCalculator.calculate(task) == TaskStates.done;
+                            final state = TaskStateCalculator.calculate(task);
+                            final isDone = state == TaskStates.done;
 
                             return ListTile(
-                              leading: Checkbox(
-                                value: isDone,
-                                onChanged: (_) async {
-                                  if (!isDone) {
-                                    await taskService.completeTask(task);
-                                  }                                  
-                                },
+                              leading: Transform.scale(
+                                scale: 1.3,
+                                child: Checkbox(
+                                  activeColor: ScaleColors.done,
+                                  // shape: CircleBorder(),
+                                  // fillColor: WidgetStateProperty<Color>.fromMap(<WidgetStatesConstraint, Color>{
+                                    // WidgetState.any: state.color, // Color is taken from TaskStateColorsX.
+                                  // }),
+                                  // side: WidgetStateBorderSide.resolveWith((states) {
+                                  //   return BorderSide(
+                                  //     width: 3,
+                                  //     color: BaseColors.dark,
+                                  //   );
+                                  // }),
+                                  // side: BorderSide(
+                                  //   width: 3,
+                                  //   color: state.color, 
+                                  // ),
+                                  value: isDone,
+                                  onChanged: (_) async {
+                                    if (!isDone) {
+                                      await taskService.completeTask(task);
+                                    }                                  
+                                  },
+                                ),
                               ),
-                              // leading: const Icon(Icons.check_box_outline_blank),
                               title: AutoHyphenatingText(task.name),
-                              subtitle: Text('-> alle ${task.recurrence} Tage\n-> wieder am ${DateFormat('d. MMM yyyy', 'de_DE').format(task.dueDate)}'),
+                              subtitle: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.timeline_rounded,
+                                        size: 18,
+                                        color: state.color,
+                                        semanticLabel: '',
+                                      ),
+                                      Text(' alle ${task.recurrence} Tage'),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.timer_outlined,
+                                        size: 18,
+                                        color: state.color,
+                                        semanticLabel: '',
+                                      ),
+                                      Text(' wieder am ${DateFormat('d. MMM yyyy', 'de_DE').format(task.dueDate)}'),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             );
                           },
                         ),

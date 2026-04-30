@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import '../common/colors.dart';
+import '../models/task_state_colors.dart';
 import '../domain/task/task_state_calculator.dart';
 import '../models/task_model.dart';
 import '../models/task_states.dart';
-// import '../calc.dart';
 
 
 class PieChartOverview extends StatefulWidget {
@@ -23,20 +23,20 @@ class PieChartOverview extends StatefulWidget {
 
 class _PieChartOverviewState extends State<PieChartOverview> {
 
-  Color _colorForState(TaskStates state) {
-    switch (state) {
-      case TaskStates.done:
-        return ScaleColors.done;
-      case TaskStates.doneRecently:
-        return ScaleColors.doneRecently;
-      case TaskStates.stillFine:
-        return ScaleColors.stillFine;
-      case TaskStates.toDoSoon:
-        return ScaleColors.toDoSoon;
-      case TaskStates.toDo:
-        return ScaleColors.toDo;
-    }
-  }
+  // Color _colorForState(TaskStates state) {
+  //   switch (state) {
+  //     case TaskStates.done:
+  //       return ScaleColors.done;
+  //     case TaskStates.doneRecently:
+  //       return ScaleColors.doneRecently;
+  //     case TaskStates.stillFine:
+  //       return ScaleColors.stillFine;
+  //     case TaskStates.toDoSoon:
+  //       return ScaleColors.toDoSoon;
+  //     case TaskStates.toDo:
+  //       return ScaleColors.toDo;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,7 @@ class _PieChartOverviewState extends State<PieChartOverview> {
         .length;
 
       return PieChartSectionData(
-        color: _colorForState(state),
+        color: state.color, // Color is taken from TaskStateColorsX.
         value: count.toDouble(),
         title: state.label,
         radius: radius,

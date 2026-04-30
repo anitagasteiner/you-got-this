@@ -20,5 +20,22 @@ class AppTheme {
         fontSize: 14,
       ),
     ),
+    checkboxTheme: CheckboxThemeData(
+      shape: CircleBorder(),
+      side: BorderSide(
+        width: 1.5,
+        color: BaseColors.dark, 
+      ),
+      // side: WidgetStateBorderSide.resolveWith((states) {
+      //   return BorderSide(
+      //     width: 1,
+      //     color: states.contains(WidgetState.selected)
+      //       ? BaseColors.grey
+      //       : BaseColors.dark,
+      //   );
+      // }),
+      // visualDensity: VisualDensity.comfortable,
+      // materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    ),
   );
 }
