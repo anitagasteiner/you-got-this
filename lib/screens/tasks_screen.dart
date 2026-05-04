@@ -170,19 +170,31 @@ class TasksScreen extends StatelessWidget {
                 },
               ),
             ),
-            BasicButton(
-              text: 'Home',
-              // onPressed: () {
-              //   Navigator.pop(context);
-              // },
-              onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  '/',
-                );
-              },
-              icon: Icons.home_filled,
-            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                BasicButton(
+                  text: 'Home',
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/',
+                    );
+                  },
+                  icon: Icons.home_filled,
+                ),
+                BasicButton(
+                  text: 'Neuer Task',
+                  onPressed: () {
+                    Navigator.pushNamed(
+                      context,
+                      '/new',
+                    );
+                  },
+                  icon: Icons.add_circle_rounded,
+                ),
+              ]
+            ),            
           ],
         ),
       ),
