@@ -159,9 +159,8 @@ class TasksScreen extends StatelessWidget {
                             );
                           },
                         ),
-                      ),                      
+                      ),
                       SizedBox(height: 15),
-                      Text('Status wechseln:'),
                       StackedBar(tasks: tasks),
                       SizedBox(height: 25),
                     ],

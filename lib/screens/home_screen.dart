@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        'Tippe auf eine Kategorie, und du gelangst zu deren Tasks.',
+                        'Tippe auf einen Status, und du gelangst zu diesen Tasks.',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
