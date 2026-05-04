@@ -210,11 +210,8 @@ class TasksScreen extends StatelessWidget {
                                 icon: const Icon(Icons.delete_outline),
                                 padding: EdgeInsets.zero,
                                 constraints: const BoxConstraints(),
-                                visualDensity: VisualDensity.compact,
-                                onPressed:() {
-                                  return;
-                                },                                
-                                // onPressed: () => _confirmDelete(context, task, taskService),
+                                visualDensity: VisualDensity.compact,               
+                                onPressed: () => _confirmDelete(context, task, taskService),
                               ),
                             );
                           },
@@ -260,6 +257,34 @@ class TasksScreen extends StatelessWidget {
       bottomNavigationBar: const AppBarBottom(),
     );
     
+  }
+
+  Future<void> _confirmDelete(
+    BuildContext context,
+    TaskModel task,
+    TaskService taskService,
+  ) async {
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Möchtest du den Task wirklich löschen?'),
+        content: const Text('Dieser Task wird dauerhaft gelöscht.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Abbrechen'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Löschen'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirm == true) {
+      await taskService.deleteTask(task);
+    }
   }
 
 }

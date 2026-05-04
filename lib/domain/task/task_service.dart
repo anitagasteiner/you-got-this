@@ -16,5 +16,9 @@ class TaskService {
     );
     await firestore.updateTask(updatedTask);
   }
+
+  Future<void> deleteTask(TaskModel task) async {
+    await firestore.deleteTask(task);
+  }
   
 }
