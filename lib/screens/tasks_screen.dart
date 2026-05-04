@@ -50,6 +50,7 @@ class TasksScreen extends StatelessWidget {
                         : 'Tasks ',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
                         fontSize: 18,
                       ),
                     ),
