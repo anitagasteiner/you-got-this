@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import '../models/task_model.dart';
 import '../widgets/navbars_widgets.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/task_form_widget.dart';
 
-class NewTaskScreen extends StatelessWidget {
-  const NewTaskScreen({super.key});
+class EditTaskScreen extends StatelessWidget {
+  final TaskModel task;
+
+  const EditTaskScreen({
+    super.key,
+    required this.task
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class NewTaskScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Neuen Task hinzufügen',
+                Text('Task bearbeiten',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -29,7 +35,7 @@ class NewTaskScreen extends StatelessWidget {
             SizedBox(height: 24),
             SizedBox(
               width: 250,
-              child: const TaskForm(),
+              child: TaskForm(task: task),
             ),
             SizedBox(height: 24),
             BasicButton(

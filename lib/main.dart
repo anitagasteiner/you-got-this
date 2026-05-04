@@ -10,9 +10,11 @@ import 'services/firestore_service.dart';
 import 'domain/task/task_service.dart';
 import 'firebase_options.dart';
 import './theme/app_theme.dart';
+import 'models/task_model.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/new_task_screen.dart';
+import 'screens/edit_task_screen.dart';
 
 
 // void main() {
@@ -53,6 +55,10 @@ class MainApp extends StatelessWidget {
         '/': (context) => HomeScreen(),
         '/tasks': (context) => TasksScreen(),
         '/new': (context) => NewTaskScreen(),
+        '/edit': (context) {
+          final task = ModalRoute.of(context)!.settings.arguments as TaskModel;
+          return EditTaskScreen(task: task);
+        },
       },
       title: 'You got this!',
       localizationsDelegates: [

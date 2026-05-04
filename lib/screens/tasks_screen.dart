@@ -97,7 +97,7 @@ class TasksScreen extends StatelessWidget {
                               'Alle',
                               style: TextStyle(color: BtnColors.front),
                             ),
-                          ),                          
+                          ),
                         ),
                       ),
                     ],
@@ -142,24 +142,17 @@ class TasksScreen extends StatelessWidget {
                             final isDone = state == TaskStates.done;
 
                             return ListTile(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/edit',
+                                  arguments: task,
+                                );
+                              },
                               leading: Transform.scale(
                                 scale: 1.3,
                                 child: Checkbox(
                                   activeColor: ScaleColors.done,
-                                  // shape: CircleBorder(),
-                                  // fillColor: WidgetStateProperty<Color>.fromMap(<WidgetStatesConstraint, Color>{
-                                    // WidgetState.any: state.color, // Color is taken from TaskStateColorsX.
-                                  // }),
-                                  // side: WidgetStateBorderSide.resolveWith((states) {
-                                  //   return BorderSide(
-                                  //     width: 3,
-                                  //     color: BaseColors.dark,
-                                  //   );
-                                  // }),
-                                  // side: BorderSide(
-                                  //   width: 3,
-                                  //   color: state.color, 
-                                  // ),
                                   value: isDone,
                                   onChanged: (_) async {
                                     if (!isDone) {
