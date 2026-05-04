@@ -23,21 +23,6 @@ class PieChartOverview extends StatefulWidget {
 
 class _PieChartOverviewState extends State<PieChartOverview> {
 
-  // Color _colorForState(TaskStates state) {
-  //   switch (state) {
-  //     case TaskStates.done:
-  //       return ScaleColors.done;
-  //     case TaskStates.doneRecently:
-  //       return ScaleColors.doneRecently;
-  //     case TaskStates.stillFine:
-  //       return ScaleColors.stillFine;
-  //     case TaskStates.toDoSoon:
-  //       return ScaleColors.toDoSoon;
-  //     case TaskStates.toDo:
-  //       return ScaleColors.toDo;
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     final statesStock = TaskStates.values;

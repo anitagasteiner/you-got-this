@@ -40,28 +40,66 @@ class TasksScreen extends StatelessWidget {
             SizedBox(height: 5),
             // Dynamic title:
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  state == null
-                    ? 'Alle Tasks'
-                    : 'Tasks ',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      state == null
+                        ? 'Alle Tasks'
+                        : 'Tasks ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    if (state != null)
+                      Text(
+                        state.label,
+                        // getTextFromState(state),
+                        // '$state',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          fontSize: 18,
+                          color: state.color, // Colors.green,
+                        ),
+                      ),
+                  ]
                 ),
                 if (state != null)
-                  Text(
-                    state.label,
-                    // getTextFromState(state),
-                    // '$state',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic,
-                      fontSize: 18,
-                      color: Colors.green,
-                    ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          customBorder: const CircleBorder(),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/tasks',
+                              arguments: null
+                            );
+                          },
+                          child: Icon(
+                            Icons.circle,
+                            color: BtnColors.back,
+                            size: 40,
+                          ),
+                        ),
+                      ),                      
+                      Positioned.fill(
+                        child: Center(
+                          child: IgnorePointer(
+                            child: Text(
+                              'Alle',
+                              style: TextStyle(color: BtnColors.front),
+                            ),
+                          ),                          
+                        ),
+                      ),
+                    ],
                   ),
               ],
             ),

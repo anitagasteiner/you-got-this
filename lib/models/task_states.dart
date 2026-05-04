@@ -13,15 +13,15 @@ extension TaskStatesX on TaskStates {
   String get label {
     switch (this) {
       case TaskStates.done:
-        return 'done :)))';
+        return 'done'; // :)))
       case TaskStates.doneRecently:
-        return 'just done :))';
+        return 'just done'; // :))
       case TaskStates.stillFine:
-        return 'all good :)';
+        return 'all good'; // :)
       case TaskStates.toDoSoon:
-        return 'next -_-';
+        return 'upcoming'; // -_- next
       case TaskStates.toDo:
-        return 'to do !_!'; //0_0';
+        return 'to do'; // 0_0 !_!
     }
   }
 }
