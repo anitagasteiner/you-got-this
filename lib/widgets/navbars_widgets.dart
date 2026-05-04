@@ -11,28 +11,29 @@ class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       leading: Padding(
         padding: EdgeInsets.all(8.0),
-        // child: Image.asset('/images/coffee.png'),
         child: const Logo(),
         ),
       title: Text(
         'You got this!',
         style: TextStyle(
-          color: AppBarColors.text,
-          fontWeight: FontWeight.w600),
+          color: BaseColors.dark,
+          // fontWeight: FontWeight.w500,
         ),
+      ),
       actions: [
         IconButton(
           icon: Icon(
             Icons.menu,
             size: 35,
-            color: AppBarColors.text,
+            color: BaseColors.main,
             ),
           onPressed: () {},
         ),
       ],
-      backgroundColor: AppBarColors.background,
-      shadowColor: AppBarColors.shadow,
-      elevation: 3.0,
+      backgroundColor: BaseColors.light,
+      surfaceTintColor: Colors.transparent,
+      shadowColor: BaseColors.light,
+      elevation: 4.0,
     );
   }
 
@@ -50,27 +51,36 @@ class AppBarBottom extends StatelessWidget {
     return SizedBox(
         height: 60,     
         child: Container(
-          color: AppBarColors.background,
+          color: BaseColors.grey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(height: 4),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
+                children: [
                   Text(
                     'Impressum',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      color: BaseColors.light,
+                      fontSize: 16
+                    ),
                     ),
                   Text(
                     'Datenschutz',
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(
+                      color: BaseColors.light,
+                      fontSize: 16
+                    ),
                     ),
                 ],
               ),
               Text(
                 '\u00A9 2026 Anita Gasteiner',
-                style: TextStyle(fontSize: 14),
+                style: TextStyle(
+                  color: BaseColors.light,
+                  fontSize: 14
+                ),
               ),
               SizedBox(height: 4),
             ],

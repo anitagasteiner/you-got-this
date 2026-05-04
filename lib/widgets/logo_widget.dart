@@ -14,11 +14,17 @@ class Logo extends StatelessWidget {
           size: const Size(100, 100),
           painter: MyPainting(),
         ),
-        Icon(
-          Icons.cached,
-          size: 40,
-          color: AppBarColors.icon,
-          semanticLabel: '',
+        RotatedBox(
+          quarterTurns: 1,
+          child: Icon(
+            // Icons.cached,
+            // Icons.circle,
+            Icons.replay_circle_filled_outlined,
+            // Icons.replay_rounded,
+            size: 40,
+            color: BaseColors.light,
+            semanticLabel: '',
+          ),
         ),
       ],
     );
