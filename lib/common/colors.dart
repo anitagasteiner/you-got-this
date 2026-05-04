@@ -5,6 +5,7 @@ class BaseColors {
   static final light = Color(0xFFFAFAFA);
   static final dark = Colors.grey[900]!;
   static final grey = Colors.grey[700]!;
+  static final shadow = Colors.grey[400]!.withValues(alpha: 0.2);
   static final main = Colors.lightGreen[400]!;
   static final accent = Colors.orange[400]!;
 }

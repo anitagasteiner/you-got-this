@@ -33,8 +33,8 @@ class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
       ],
       backgroundColor: BaseColors.light,
       surfaceTintColor: Colors.transparent,
-      shadowColor: BaseColors.light,
-      elevation: 4.0,
+      shadowColor: BaseColors.shadow,
+      elevation: 5.0,
     );
   }
 
