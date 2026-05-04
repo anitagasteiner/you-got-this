@@ -9,6 +9,7 @@ class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      titleSpacing: 0,
       leading: Padding(
         padding: EdgeInsets.all(8.0),
         child: const Logo(),
@@ -25,7 +26,7 @@ class AppBarTop extends StatelessWidget implements PreferredSizeWidget {
           icon: Icon(
             Icons.menu,
             size: 35,
-            color: BaseColors.main,
+            color: BaseColors.grey,
             ),
           onPressed: () {},
         ),
