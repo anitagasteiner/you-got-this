@@ -152,6 +152,8 @@ class TasksScreen extends StatelessWidget {
                               leading: Transform.scale(
                                 scale: 1.3,
                                 child: Checkbox(
+                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  visualDensity: VisualDensity.compact,
                                   activeColor: ScaleColors.done,
                                   value: isDone,
                                   onChanged: (_) async {
@@ -161,7 +163,13 @@ class TasksScreen extends StatelessWidget {
                                   },
                                 ),
                               ),
-                              title: AutoHyphenatingText(task.name),
+                              title: AutoHyphenatingText(
+                                task.name,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
                               subtitle: Column(
                                 children: [
                                   Row(
@@ -172,7 +180,12 @@ class TasksScreen extends StatelessWidget {
                                         color: state.color,
                                         semanticLabel: '',
                                       ),
-                                      Text(' alle ${task.recurrence} Tage'),
+                                      Expanded(
+                                        child: Text(
+                                          ' alle ${task.recurrence} Tage',
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   Row(
@@ -183,10 +196,25 @@ class TasksScreen extends StatelessWidget {
                                         color: state.color,
                                         semanticLabel: '',
                                       ),
-                                      Text(' wieder am ${DateFormat('d. MMM yyyy', 'de_DE').format(task.dueDate)}'),
+                                      Expanded(
+                                        child: Text(
+                                          ' ${DateFormat('d. MMM yyyy', 'de_DE').format(task.dueDate)}',
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ],
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete_outline),
+                                padding: EdgeInsets.zero,
+                                constraints: const BoxConstraints(),
+                                visualDensity: VisualDensity.compact,
+                                onPressed:() {
+                                  return;
+                                },                                
+                                // onPressed: () => _confirmDelete(context, task, taskService),
                               ),
                             );
                           },
