@@ -142,13 +142,13 @@ class TasksScreen extends StatelessWidget {
                             final isDone = state == TaskStates.done;
 
                             return ListTile(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                  context,
-                                  '/edit',
-                                  arguments: task,
-                                );
-                              },
+                              // onTap: () {
+                              //   Navigator.pushNamed(
+                              //     context,
+                              //     '/edit',
+                              //     arguments: task,
+                              //   );
+                              // },
                               leading: Transform.scale(
                                 scale: 1.3,
                                 child: Checkbox(
@@ -206,13 +206,30 @@ class TasksScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              // trailing: Column(
+                              //   children: [
                               trailing: IconButton(
-                                icon: const Icon(Icons.delete_outline),
+                                icon: const Icon(Icons.edit),
                                 padding: EdgeInsets.zero,
-                                constraints: const BoxConstraints(),
+                                // constraints: const BoxConstraints(),
                                 visualDensity: VisualDensity.compact,               
-                                onPressed: () => _confirmDelete(context, task, taskService),
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/edit',
+                                    arguments: task,
+                                  );
+                                },
                               ),
+                                  // IconButton(
+                                  //   icon: const Icon(Icons.delete_outline),
+                                  //   padding: EdgeInsets.zero,
+                                  //   // constraints: const BoxConstraints(),
+                                  //   visualDensity: VisualDensity.compact,               
+                                  //   onPressed: () => _confirmDelete(context, task, taskService),
+                                  // ),
+                                // ],
+                              // ),                              
                             );
                           },
                         ),
