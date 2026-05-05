@@ -141,14 +141,15 @@ class TasksScreen extends StatelessWidget {
                             final state = TaskStateCalculator.calculate(task);
                             final isDone = state == TaskStates.done;
 
-                            return ListTile(
-                              // onTap: () {
-                              //   Navigator.pushNamed(
-                              //     context,
-                              //     '/edit',
-                              //     arguments: task,
-                              //   );
-                              // },
+                            return Card(
+                              color: BaseColors.light,
+                              shadowColor: BaseColors.grey,
+                              elevation: 2,
+                              shape: ContinuousRectangleBorder(
+                                borderRadius: BorderRadius.circular(86),
+                              ),
+                              clipBehavior: Clip.antiAlias,
+                              child: ListTile(
                               leading: Transform.scale(
                                 scale: 1.3,
                                 child: Checkbox(
@@ -230,6 +231,7 @@ class TasksScreen extends StatelessWidget {
                                   // ),
                                 // ],
                               // ),                              
+                            ),
                             );
                           },
                         ),
