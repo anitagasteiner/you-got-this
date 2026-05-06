@@ -141,97 +141,122 @@ class TasksScreen extends StatelessWidget {
                             final state = TaskStateCalculator.calculate(task);
                             final isDone = state == TaskStates.done;
 
-                            return Card(
+                            return Dismissible(
+                              key: ValueKey(task.id),
+                              direction: DismissDirection.endToStart, // Swipe left
+                              background: Container( // Background while swiping
+                              alignment: Alignment.centerRight,
+                              padding: const EdgeInsets.symmetric(horizontal: 20),
                               color: BaseColors.light,
-                              shadowColor: BaseColors.grey,
-                              elevation: 2,
-                              shape: ContinuousRectangleBorder(
-                                borderRadius: BorderRadius.circular(86),
+                              child: Icon(Icons.delete_outline, color: BaseColors.dark),
                               ),
-                              clipBehavior: Clip.antiAlias,
-                              child: ListTile(
-                              leading: Transform.scale(
-                                scale: 1.3,
-                                child: Checkbox(
-                                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  visualDensity: VisualDensity.compact,
-                                  activeColor: ScaleColors.done,
-                                  value: isDone,
-                                  onChanged: (_) async {
-                                    if (!isDone) {
-                                      await taskService.completeTask(task);
-                                    }                                  
-                                  },
-                                ),
-                              ),
-                              title: AutoHyphenatingText(
-                                task.name,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              subtitle: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.timeline_rounded,
-                                        size: 18,
-                                        color: state.color,
-                                        semanticLabel: '',
+                              confirmDismiss: (_) async { // Confirm before deletion
+                                return await showDialog<bool>(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Möchtest du den Task wirklich löschen?'),
+                                    content: const Text('Dieser Task wird dauerhaft gelöscht.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context, false),
+                                        child: const Text('Abbrechen'),
                                       ),
-                                      Expanded(
-                                        child: Text(
-                                          ' alle ${task.recurrence} Tage',
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context, true),
+                                        child: const Text('Löschen'),
                                       ),
                                     ],
                                   ),
-                                  Row(
+                                );
+                              },
+                              onDismissed: (_) async { // Executed if confirmDismiss == true
+                                await taskService.deleteTask(task);
+                                if (!context.mounted) return;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(content: Text('Der Task wurde gelöscht.')),
+                                );
+                              },
+                              child: Card(
+                                color: BaseColors.light,
+                                shadowColor: BaseColors.grey,
+                                elevation: 2,
+                                shape: ContinuousRectangleBorder(
+                                  borderRadius: BorderRadius.circular(86),
+                                ),
+                                clipBehavior: Clip.antiAlias,
+                                child: ListTile(
+                                  leading: Transform.scale(
+                                    scale: 1.3,
+                                    child: Checkbox(
+                                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                      visualDensity: VisualDensity.compact,
+                                      activeColor: ScaleColors.done,
+                                      value: isDone,
+                                      onChanged: (_) async {
+                                        if (!isDone) {
+                                          await taskService.completeTask(task);
+                                        }                                  
+                                      },
+                                    ),
+                                  ),
+                                  title: AutoHyphenatingText(
+                                    task.name,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  subtitle: Column(
                                     children: [
-                                      Icon(
-                                        Icons.timer_outlined,
-                                        size: 18,
-                                        color: state.color,
-                                        semanticLabel: '',
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.timeline_rounded,
+                                            size: 18,
+                                            color: state.color,
+                                            semanticLabel: '',
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              ' alle ${task.recurrence} Tage',
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Expanded(
-                                        child: Text(
-                                          ' ${DateFormat('d. MMM yyyy', 'de_DE').format(task.dueDate)}',
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.timer_outlined,
+                                            size: 18,
+                                            color: state.color,
+                                            semanticLabel: '',
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              ' ${DateFormat('d. MMM yyyy', 'de_DE').format(task.dueDate)}',
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
-                                ],
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.edit),
+                                    padding: EdgeInsets.zero,
+                                    // constraints: const BoxConstraints(),
+                                    visualDensity: VisualDensity.compact,               
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/edit',
+                                        arguments: task,
+                                      );
+                                    },
+                                  ),
+                                ),
                               ),
-                              // trailing: Column(
-                              //   children: [
-                              trailing: IconButton(
-                                icon: const Icon(Icons.edit),
-                                padding: EdgeInsets.zero,
-                                // constraints: const BoxConstraints(),
-                                visualDensity: VisualDensity.compact,               
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    '/edit',
-                                    arguments: task,
-                                  );
-                                },
-                              ),
-                                  // IconButton(
-                                  //   icon: const Icon(Icons.delete_outline),
-                                  //   padding: EdgeInsets.zero,
-                                  //   // constraints: const BoxConstraints(),
-                                  //   visualDensity: VisualDensity.compact,               
-                                  //   onPressed: () => _confirmDelete(context, task, taskService),
-                                  // ),
-                                // ],
-                              // ),                              
-                            ),
                             );
                           },
                         ),
@@ -241,7 +266,6 @@ class TasksScreen extends StatelessWidget {
                       SizedBox(height: 25),
                     ],
                   );
-                   
                 },
               ),
             ),
@@ -269,7 +293,7 @@ class TasksScreen extends StatelessWidget {
                   icon: Icons.add_circle_rounded,
                 ),
               ]
-            ),            
+            ),
           ],
         ),
       ),
@@ -278,32 +302,32 @@ class TasksScreen extends StatelessWidget {
     
   }
 
-  Future<void> _confirmDelete(
-    BuildContext context,
-    TaskModel task,
-    TaskService taskService,
-  ) async {
-    final confirm = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Möchtest du den Task wirklich löschen?'),
-        content: const Text('Dieser Task wird dauerhaft gelöscht.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, false),
-            child: const Text('Abbrechen'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Löschen'),
-          ),
-        ],
-      ),
-    );
+  // Future<void> _confirmDelete(
+  //   BuildContext context,
+  //   TaskModel task,
+  //   TaskService taskService,
+  // ) async {
+  //   final confirm = await showDialog<bool>(
+  //     context: context,
+  //     builder: (context) => AlertDialog(
+  //       title: const Text('Möchtest du den Task wirklich löschen?'),
+  //       content: const Text('Dieser Task wird dauerhaft gelöscht.'),
+  //       actions: [
+  //         TextButton(
+  //           onPressed: () => Navigator.pop(context, false),
+  //           child: const Text('Abbrechen'),
+  //         ),
+  //         TextButton(
+  //           onPressed: () => Navigator.pop(context, true),
+  //           child: const Text('Löschen'),
+  //         ),
+  //       ],
+  //     ),
+  //   );
 
-    if (confirm == true) {
-      await taskService.deleteTask(task);
-    }
-  }
+  //   if (confirm == true) {
+  //     await taskService.deleteTask(task);
+  //   }
+  // }
 
 }
