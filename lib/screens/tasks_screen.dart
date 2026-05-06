@@ -154,18 +154,27 @@ class TasksScreen extends StatelessWidget {
                                 return await showDialog<bool>(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                    title: const Text('Möchtest du den Task wirklich löschen?'),
+                                    title: const Text('Task löschen?'),
                                     content: const Text('Dieser Task wird dauerhaft gelöscht.'),
                                     actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(context, false),
-                                        child: const Text('Abbrechen'),
+                                      BasicButton(
+                                        text: 'Abbrechen',
+                                        onPressed: () {
+                                          Navigator.pop(context, false);
+                                        },
+                                        icon: Icons.close_rounded,
+                                        // child: const Text('Abbrechen'),
                                       ),
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(context, true),
-                                        child: const Text('Löschen'),
+                                      SizedBox(height: 10),
+                                      BasicButton(
+                                        text: 'Löschen',
+                                        onPressed: () {
+                                          Navigator.pop(context, true);
+                                        },
+                                        icon: Icons.delete_forever_rounded,
                                       ),
                                     ],
+                                    backgroundColor: BaseColors.light,
                                   ),
                                 );
                               },
