@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:you_got_this/common/colors.dart';
+import '../common/scaffold_messenger_key.dart';
 import '../services/firestore_service.dart';
 import '../domain/task/task_state_calculator.dart';
 import '../domain/task/task_service.dart';
@@ -89,7 +90,7 @@ class TasksScreen extends StatelessWidget {
                             size: 40,
                           ),
                         ),
-                      ),                      
+                      ),
                       Positioned.fill(
                         child: Center(
                           child: IgnorePointer(
@@ -142,7 +143,7 @@ class TasksScreen extends StatelessWidget {
                             final isDone = state == TaskStates.done;
 
                             return Dismissible(
-                              key: ValueKey(task.id),
+                              key: ValueKey(task.id),                              
                               direction: DismissDirection.endToStart, // Swipe left
                               background: Container( // Background while swiping
                               alignment: Alignment.centerRight,
@@ -151,38 +152,37 @@ class TasksScreen extends StatelessWidget {
                               child: Icon(Icons.delete_outline, color: BaseColors.dark),
                               ),
                               confirmDismiss: (_) async { // Confirm before deletion
-                                return await showDialog<bool>(
+                                final result = await showDialog<bool>(
                                   context: context,
                                   builder: (context) => AlertDialog(
                                     title: const Text('Task löschen?'),
                                     content: const Text('Dieser Task wird dauerhaft gelöscht.'),
                                     actions: [
-                                      BasicButton(
-                                        text: 'Abbrechen',
-                                        onPressed: () {
-                                          Navigator.pop(context, false);
-                                        },
-                                        icon: Icons.close_rounded,
+                                      TextButton( // SPÄTER IN ALERTBUTTON ALS WIDGET AUSLAGERN!!! (icon: Icons.close_rounded)
+                                        onPressed: () => Navigator.pop(context, false),
+                                        child: const Text('Abbrechen'),
                                       ),
                                       SizedBox(height: 10),
-                                      BasicButton(
-                                        text: 'Löschen',
-                                        onPressed: () {
-                                          Navigator.pop(context, true);
-                                        },
-                                        icon: Icons.delete_forever_rounded,
+                                      TextButton( // SPÄTER IN ALERTBUTTON ALS WIDGET AUSLAGERN!!! (icon: Icons.delete_forever_rounded)
+                                        onPressed: () => Navigator.pop(context, true),
+                                        child: const Text('Löschen'),
                                       ),
                                     ],
                                     backgroundColor: BaseColors.light,
                                   ),
                                 );
-                              },
-                              onDismissed: (_) async { // Executed if confirmDismiss == true
-                                await taskService.deleteTask(task);
-                                if (!context.mounted) return;
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text('Der Task wurde gelöscht.')),
-                                );
+                                if (result == true) {
+                                  await taskService.deleteTask(task);
+                                  // if (context.mounted) {
+                                    // print(messengerKey.currentState);
+                                    // messengerKey.currentState?.showSnackBar(
+                                    //   const SnackBar(content: Text('Der Task wurde gelöscht.')),
+                                    // );
+                                  // }
+                                  //return true; // Allows dismiss
+                                }
+                                // return false;
+                                return result ?? false;
                               },
                               child: Card(
                                 color: BaseColors.light,

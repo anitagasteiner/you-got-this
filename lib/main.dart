@@ -10,6 +10,7 @@ import 'services/firestore_service.dart';
 import 'domain/task/task_service.dart';
 import 'firebase_options.dart';
 import './theme/app_theme.dart';
+// import 'common/scaffold_messenger_key.dart';
 import 'models/task_model.dart';
 import 'screens/home_screen.dart';
 import 'screens/tasks_screen.dart';
@@ -50,6 +51,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // scaffoldMessengerKey: messengerKey,
       initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),
