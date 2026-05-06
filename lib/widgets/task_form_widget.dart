@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../services/firestore_service.dart';
 import '../models/task_model.dart';
+import '../common/colors.dart';
 import 'button_widget.dart';
 
 
@@ -154,12 +155,11 @@ class _TaskFormState extends State<TaskForm> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          // content: Text(
-                          //   'Dein neuer Task wurde gespeichert:\n${taskName.text} ist am ${DateFormat('EEEE, d. MMM', 'de').format(selectedDate!)}, zum ersten Mal fällig und dann alle ${taskRecurrence.text} Tage.\nMomentaner Status: ${_selectedState!}'
-                          // ),
-                          content: Text(
+                          content: const Text(
                             'Deine Eingaben wurden gespeichert.'
                           ),
+                          contentPadding: EdgeInsets.all(18.0),
+                          backgroundColor: BaseColors.light,
                         );
                       },
                     );                    

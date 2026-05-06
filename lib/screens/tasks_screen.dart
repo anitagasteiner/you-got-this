@@ -163,7 +163,6 @@ class TasksScreen extends StatelessWidget {
                                           Navigator.pop(context, false);
                                         },
                                         icon: Icons.close_rounded,
-                                        // child: const Text('Abbrechen'),
                                       ),
                                       SizedBox(height: 10),
                                       BasicButton(
