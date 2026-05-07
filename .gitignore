@@ -32,6 +32,7 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+pubspec.lock
 
 # Symbolication related
 app.*.symbols
@@ -49,4 +50,7 @@ firebase.json
 google-services.json
 /lib/firebase_options.dart
 /android/app/google-services.json
+
+#Notes
+/lib/authentication_notes.txt
 
