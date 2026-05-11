@@ -18,10 +18,7 @@ class Logo extends StatelessWidget {
         RotatedBox(
           quarterTurns: 1,
           child: Icon(
-            // Icons.cached,
-            // Icons.circle,
             Icons.replay_circle_filled_outlined,
-            // Icons.replay_rounded,
             size: 40,
             color: BaseColors.light,
             semanticLabel: '',
