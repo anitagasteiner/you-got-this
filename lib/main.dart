@@ -12,7 +12,7 @@ import 'firebase_options.dart';
 import 'ui/core/themes/app_theme.dart';
 import 'domain/models/task_model.dart';
 // import 'ui/home/home_screen.dart';
-import 'ui/home/widgets/home_screen.dart';
+import 'ui/home/home_screen.dart';
 import 'ui/tasks/tasks_screen.dart';
 import 'ui/tasks/new_task_screen.dart';
 import 'ui/tasks/edit_task_screen.dart';
@@ -53,7 +53,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeView(),
+        '/': (context) => HomeScreen(),
         '/tasks': (context) => TasksScreen(),
         '/new': (context) => NewTaskScreen(),
         '/edit': (context) {

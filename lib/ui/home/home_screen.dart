@@ -5,20 +5,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../data/services/firestore_service.dart';
-import '../../core/themes/colors.dart';
-import '../../../domain/models/task_model.dart';
-import '../../../calc.dart';
-import '../../core/ui/app_bar_top/app_bar_top_widget.dart';
-import '../../core/ui/app_bar_bottom_widget.dart';
-import '../../tasks/widgets/fl_chart_widget.dart';
-import '../../core/ui/button_widget.dart';
-import '../../core/ui/progress_circle_widget.dart';
-import '../view_models/home_viewmodel.dart';
+import '../../data/services/firestore_service.dart';
+import '../core/themes/colors.dart';
+import '../../domain/models/task_model.dart';
+import '../../calc.dart';
+import '../core/ui/app_bar_top/app_bar_top_widget.dart';
+import '../core/ui/app_bar_bottom_widget.dart';
+import '../tasks/widgets/fl_chart_widget.dart';
+import '../core/ui/button_widget.dart';
+import '../core/ui/progress_circle_widget.dart';
+import 'home_viewmodel.dart';
 
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
