@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'color_box_link_widget.dart';
-import '../../../data/colors.dart';
+import '../../core/themes/colors.dart';
 import '../../../domain/models/task_model.dart';
 import '../../../domain/models/task_states.dart';
 

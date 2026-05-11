@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../data/colors.dart';
+import '../themes/colors.dart';
 
 class ProgressCircle extends StatelessWidget {
   const ProgressCircle({super.key});

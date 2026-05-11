@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../../../data/services/firestore_service.dart';
 import '../../../domain/models/task_model.dart';
-import '../../../data/colors.dart';
+import '../themes/colors.dart';
 import 'button_widget.dart';
 
 

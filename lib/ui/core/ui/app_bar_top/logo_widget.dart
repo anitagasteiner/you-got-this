@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../data/colors.dart';
-import '../../../data/painting.dart';
+import '../../themes/colors.dart';
+import 'logo_background.dart';
+
 
 class Logo extends StatelessWidget {
   const Logo({super.key});
@@ -12,7 +13,7 @@ class Logo extends StatelessWidget {
       children: [
         CustomPaint(
           size: const Size(100, 100),
-          painter: MyPainting(),
+          painter: LogoBackground(),
         ),
         RotatedBox(
           quarterTurns: 1,

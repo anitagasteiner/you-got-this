@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'task_states.dart';
-import '../../data/colors.dart';
+import '../../../domain/models/task_states.dart';
+import 'colors.dart';
 
 
 extension TaskStateColorsX on TaskStates {

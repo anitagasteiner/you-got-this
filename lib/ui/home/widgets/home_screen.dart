@@ -6,10 +6,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../data/services/firestore_service.dart';
-import '../../../data/colors.dart';
+import '../../core/themes/colors.dart';
 import '../../../domain/models/task_model.dart';
 import '../../../calc.dart';
-import '../../core/ui/app_bar_top_widget.dart';
+import '../../core/ui/app_bar_top/app_bar_top_widget.dart';
 import '../../core/ui/app_bar_bottom_widget.dart';
 import '../../tasks/widgets/fl_chart_widget.dart';
 import '../../core/ui/button_widget.dart';

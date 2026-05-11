@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
+import '../../themes/colors.dart';
 
 
-class MyPainting extends CustomPainter {
+class LogoBackground extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
