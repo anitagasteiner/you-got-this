@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../data/services/firestore_service.dart';
-import '../../domain/models/task_model.dart';
+import '../../../data/services/firestore_service.dart';
+import '../../../domain/models/task_model.dart';
 
 class HomeViewModel extends ChangeNotifier {
   final FirestoreService firestoreService;

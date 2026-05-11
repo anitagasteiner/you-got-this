@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../domain/models/task_model.dart';
-import '../ui/core/ui/navbars_widgets.dart';
-import '../ui/core/ui/button_widget.dart';
-import '../ui/core/ui/task_form_widget.dart';
+import '../../domain/models/task_model.dart';
+import '../core/ui/navbars_widgets.dart';
+import '../core/ui/button_widget.dart';
+import '../core/ui/task_form_widget.dart';
 
 class EditTaskScreen extends StatelessWidget {
   final TaskModel task;

@@ -1,5 +1,5 @@
 import 'domain/models/task_model.dart';
-import './domain/task/task_state_calculator.dart';
+import 'domain/task_state_calculator.dart';
 import 'domain/models/task_states.dart';
 
 String firstName = 'Anita';

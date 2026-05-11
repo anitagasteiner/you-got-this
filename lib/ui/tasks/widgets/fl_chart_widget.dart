@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../common/colors.dart';
-import '../domain/models/task_state_colors.dart';
-import '../domain/task/task_state_calculator.dart';
-import '../domain/models/task_model.dart';
-import '../domain/models/task_states.dart';
+import '../../../data/colors.dart';
+import '../../../domain/models/task_state_colors.dart';
+import '../../../domain/task_state_calculator.dart';
+import '../../../domain/models/task_model.dart';
+import '../../../domain/models/task_states.dart';
 
 
 class PieChartOverview extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../ui/core/ui/navbars_widgets.dart';
-import '../ui/core/ui/button_widget.dart';
-import '../ui/core/ui/task_form_widget.dart';
+import '../core/ui/navbars_widgets.dart';
+import '../core/ui/button_widget.dart';
+import '../core/ui/task_form_widget.dart';
 
 class NewTaskScreen extends StatelessWidget {
   const NewTaskScreen({super.key});

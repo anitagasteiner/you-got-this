@@ -5,15 +5,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../data/services/firestore_service.dart';
-import '../../common/colors.dart';
-import '../../domain/models/task_model.dart';
-import '../../calc.dart';
-import '../core/ui/navbars_widgets.dart';
-import '../../widgets/fl_chart_widget.dart';
-import '../core/ui/button_widget.dart';
-import '../core/ui/progress_circle_widget.dart';
-import 'home_viewmodel.dart';
+import '../../../data/services/firestore_service.dart';
+import '../../../data/colors.dart';
+import '../../../domain/models/task_model.dart';
+import '../../../calc.dart';
+import '../../core/ui/navbars_widgets.dart';
+import '../../tasks/widgets/fl_chart_widget.dart';
+import '../../core/ui/button_widget.dart';
+import '../../core/ui/progress_circle_widget.dart';
+import '../view_models/home_viewmodel.dart';
 
 
 class HomeView extends StatelessWidget {

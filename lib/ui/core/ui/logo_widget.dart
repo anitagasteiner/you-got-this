@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../common/colors.dart';
-import '../../../common/painting.dart';
+import '../../../data/colors.dart';
+import '../../../data/painting.dart';
 
 class Logo extends StatelessWidget {
   const Logo({super.key});

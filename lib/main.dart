@@ -7,16 +7,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'data/services/firestore_service.dart';
-import 'domain/task/task_service.dart';
+import 'domain/task_service.dart';
 import 'firebase_options.dart';
 import 'ui/core/themes/app_theme.dart';
 // import 'common/scaffold_messenger_key.dart';
 import 'domain/models/task_model.dart';
 // import 'ui/home/home_screen.dart';
-import 'ui/home/home_view.dart';
-import 'screens/tasks_screen.dart';
-import 'screens/new_task_screen.dart';
-import 'screens/edit_task_screen.dart';
+import 'ui/home/widgets/home_screen.dart';
+import 'ui/tasks/tasks_screen.dart';
+import 'ui/tasks/new_task_screen.dart';
+import 'ui/tasks/edit_task_screen.dart';
 
 
 // void main() {
