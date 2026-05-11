@@ -6,13 +6,14 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'services/firestore_service.dart';
+import 'data/services/firestore_service.dart';
 import 'domain/task/task_service.dart';
 import 'firebase_options.dart';
-import './theme/app_theme.dart';
+import 'ui/core/themes/app_theme.dart';
 // import 'common/scaffold_messenger_key.dart';
-import 'models/task_model.dart';
-import 'screens/home_screen.dart';
+import 'domain/models/task_model.dart';
+// import 'ui/home/home_screen.dart';
+import 'ui/home/home_view.dart';
 import 'screens/tasks_screen.dart';
 import 'screens/new_task_screen.dart';
 import 'screens/edit_task_screen.dart';
@@ -54,7 +55,7 @@ class MainApp extends StatelessWidget {
       // scaffoldMessengerKey: messengerKey,
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeScreen(),
+        '/': (context) => HomeView(),
         '/tasks': (context) => TasksScreen(),
         '/new': (context) => NewTaskScreen(),
         '/edit': (context) {

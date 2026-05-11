@@ -1,5 +1,5 @@
-import '../../models/task_model.dart';
-import '../../services/firestore_service.dart';
+import '../models/task_model.dart';
+import '../../data/services/firestore_service.dart';
 
 class TaskService {
   final FirestoreService firestore;

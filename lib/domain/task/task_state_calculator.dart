@@ -1,6 +1,6 @@
 // import 'package:flutter/foundation.dart';
-import '../../models/task_model.dart';
-import '../../models/task_states.dart';
+import '../models/task_model.dart';
+import '../models/task_states.dart';
 
 
 class TaskStateCalculator {

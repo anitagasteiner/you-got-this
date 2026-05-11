@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'color_box_link_widget.dart';
 import '../common/colors.dart';
-import '../models/task_model.dart';
-import '../models/task_states.dart';
+import '../domain/models/task_model.dart';
+import '../domain/models/task_states.dart';
 
 
 class StackedBar extends StatelessWidget {

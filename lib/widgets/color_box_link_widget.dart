@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/task_model.dart';
-import '../models/task_states.dart';
+import '../domain/models/task_model.dart';
+import '../domain/models/task_states.dart';
 import '../calc.dart';
 
 class ColorBoxLink extends StatelessWidget {

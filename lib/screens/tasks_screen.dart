@@ -10,16 +10,16 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:you_got_this/common/colors.dart';
 // import '../common/scaffold_messenger_key.dart';
-import '../services/firestore_service.dart';
+import '../data/services/firestore_service.dart';
 import '../domain/task/task_state_calculator.dart';
 import '../domain/task/task_service.dart';
-import '../models/task_model.dart';
-import '../models/task_states.dart';
-import '../models/task_state_colors.dart';
-import '../widgets/navbars_widgets.dart';
-import '../widgets/button_widget.dart';
+import '../domain/models/task_model.dart';
+import '../domain/models/task_states.dart';
+import '../domain/models/task_state_colors.dart';
+import '../ui/core/ui/navbars_widgets.dart';
+import '../ui/core/ui/button_widget.dart';
 import '../widgets/stacked_bar_widget.dart';
-import '../widgets/progress_circle_widget.dart';
+import '../ui/core/ui/progress_circle_widget.dart';
 
 
 class TasksScreen extends StatelessWidget {

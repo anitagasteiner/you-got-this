@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../services/firestore_service.dart';
-import '../models/task_model.dart';
-import '../common/colors.dart';
+import '../../../data/services/firestore_service.dart';
+import '../../../domain/models/task_model.dart';
+import '../../../common/colors.dart';
 import 'button_widget.dart';
 
 

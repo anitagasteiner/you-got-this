@@ -5,21 +5,40 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../services/firestore_service.dart';
-import '../common/colors.dart';
-import '../models/task_model.dart';
-import '../calc.dart';
-import '../widgets/navbars_widgets.dart';
-import '../widgets/fl_chart_widget.dart';
-import '../widgets/button_widget.dart';
-import '../widgets/progress_circle_widget.dart';
+import '../../data/services/firestore_service.dart';
+import '../../common/colors.dart';
+import '../../domain/models/task_model.dart';
+import '../../calc.dart';
+import '../core/ui/navbars_widgets.dart';
+import '../../widgets/fl_chart_widget.dart';
+import '../core/ui/button_widget.dart';
+import '../core/ui/progress_circle_widget.dart';
+import 'home_viewmodel.dart';
 
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => HomeViewModel(
+        firestoreService: context.read<FirestoreService>(),
+      ),
+      child: const _HomeViewBody(),
+    );
+  }
+}
+
+class _HomeViewBody extends StatelessWidget {
+  const _HomeViewBody();
+
+  @override
+  Widget build(BuildContext context) {
+    final viewModel = context.read<HomeViewModel>(); // Das ist korrekt, weil mein ViewModel aktuell keine notifyListeners() verwendet. Falls später State hinzukommt:
+    // - read -> kein Rebuild
+    // - watch -> Rebuild bei Änderungen
+
     return Scaffold(
       appBar: const AppBarTop(),
       body: SingleChildScrollView(
@@ -27,24 +46,35 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
+
               Text(
                 greet(),
                 style: Theme.of(context).textTheme.titleLarge,
-                ),
-              SizedBox(height: 25),
+              ),
+
+              const SizedBox(height: 25),
+
               Text(
                 'Das ist deine Task-Übersicht:',
                 style: Theme.of(context).textTheme.bodyLarge,
                 textAlign: TextAlign.center,
-                ),
-              SizedBox(height: 16),
-              StreamBuilder<List<TaskModel>>( // Subscribes to Firestore via a stream; rebuilds UI automatically when data changes.
-                stream: context.read<FirestoreService>().getTasks(),
+              ),
+
+              const SizedBox(height: 16),
+
+              StreamBuilder<List<TaskModel>>(
+                stream: viewModel.tasksStream,
                 builder: (context, snapshot) {
+
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return ProgressCircle(); // Loading Spinner
                   }
+
+                  if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  }
+
                   if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return Text(
                       'Es sind noch keine Tasks vorhanden. Verwende den Button unten, um neue Tasks hinzuzufügen.',
@@ -56,13 +86,13 @@ class HomeScreen extends StatelessWidget {
                       ),
                     );
                   }
-                  if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  }
+                  
                   final tasks = snapshot.data!;
+
                   return LayoutBuilder(
                     builder: (context, constraints) {
                       final width = constraints.maxWidth.clamp(310.0, 400.0);
+
                       return SizedBox(
                         width: width,
                         child: MouseRegion(
@@ -77,7 +107,9 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
               ),
-              SizedBox(height: 16),
+
+              const SizedBox(height: 16),
+
               SizedBox(
                 width: 250,
                 child: Row(
@@ -88,6 +120,7 @@ class HomeScreen extends StatelessWidget {
                       color: BaseColors.dark,
                       semanticLabel: '',
                     ),
+
                     Expanded(
                       child: Text(
                         'Tippe auf einen Status, und du gelangst zu diesen Tasks.',
@@ -98,30 +131,26 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 32),
+
+              const SizedBox(height: 32),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   BasicButton(
                     text: 'Alle Tasks',
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/tasks',
-                        arguments: null
-                      );
-                    },
                     icon: Icons.assignment,
+                    onPressed: () {
+                      viewModel.openAllTasks(context);
+                    },
                   ),
+
                   BasicButton(
                     text: 'Neuer Task',
-                    onPressed: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/new',
-                      );
-                    },
                     icon: Icons.add_circle_rounded,
+                    onPressed: () {
+                      viewModel.openNewTask(context);
+                    },
                   ),
                 ],
               ),

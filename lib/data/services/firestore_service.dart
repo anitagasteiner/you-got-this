@@ -1,7 +1,7 @@
 // Data base operations
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../models/task_model.dart';
+import '../../domain/models/task_model.dart';
 
 
 class FirestoreService {

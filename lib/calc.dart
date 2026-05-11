@@ -1,6 +1,6 @@
-import './models/task_model.dart';
+import 'domain/models/task_model.dart';
 import './domain/task/task_state_calculator.dart';
-import 'models/task_states.dart';
+import 'domain/models/task_states.dart';
 
 String firstName = 'Anita';
 String lastName = 'Gasteiner';
