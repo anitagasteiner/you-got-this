@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../domain/models/task_model.dart';
-import '../../../domain/models/task_states.dart';
-import '../../../calc.dart';
+import '../../../../domain/models/task_model.dart';
+import '../../../../domain/models/task_states.dart';
+import '../../../../calc.dart';
 
 class ColorBoxLink extends StatelessWidget {
   final Color color;

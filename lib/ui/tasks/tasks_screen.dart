@@ -19,7 +19,7 @@ import '../core/themes/task_state_colors.dart';
 import '../core/ui/app_bar_top/app_bar_top_widget.dart';
 import '../core/ui/app_bar_bottom_widget.dart';
 import '../core/ui/button_widget.dart';
-import 'widgets/stacked_bar_widget.dart';
+import 'widgets/stacked_bar/stacked_bar_widget.dart';
 import '../core/ui/progress_circle_widget.dart';
 
 

@@ -11,7 +11,7 @@ import '../../domain/models/task_model.dart';
 import '../../calc.dart';
 import '../core/ui/app_bar_top/app_bar_top_widget.dart';
 import '../core/ui/app_bar_bottom_widget.dart';
-import '../tasks/widgets/fl_chart_widget.dart';
+import 'widgets/fl_chart_widget.dart';
 import '../core/ui/button_widget.dart';
 import '../core/ui/progress_circle_widget.dart';
 import 'home_viewmodel.dart';
