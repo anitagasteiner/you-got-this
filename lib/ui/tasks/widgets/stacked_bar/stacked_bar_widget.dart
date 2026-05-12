@@ -95,19 +95,12 @@ class StackedBar extends StatelessWidget {
                     color: BaseColors.dark,
                     semanticLabel: '',
                   ),
-                  
-                    Text(
-                      'Tasks nach Status anzeigen',
-                      // textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  
+                  Text(
+                    'Tasks nach Status anzeigen',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ],
               ),
-              // child: Text(
-              //   'Tasks nach Status anzeigen',
-              //   style: TextStyle(color: BaseColors.dark),
-              // ),
             ),
           ),
         ),
