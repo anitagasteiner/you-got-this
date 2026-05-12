@@ -227,9 +227,11 @@ class TasksScreen extends StatelessWidget {
                                           ),
                                           Expanded(
                                             child: Text(
-                                              ' alle ${task.recurrence} Tage',
+                                              task.recurrence == 1
+                                              ? ' jeden Tag'
+                                              : ' alle ${task.recurrence} Tage',
                                               overflow: TextOverflow.ellipsis,
-                                            ),
+                                            )
                                           ),
                                         ],
                                       ),
