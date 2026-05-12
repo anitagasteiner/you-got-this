@@ -10,8 +10,10 @@ class TaskStateCalculator {
     int turningPointDoneRecently = task.recurrence ~/4*3;   // 3 -> DONE RECENTLY
     final now = DateTime.now();
     final difference = task.dueDate.difference(now).inDays;
+    final today = DateTime(now.year, now.month, now.day);
+    final dueDay = DateTime(task.dueDate.year, task.dueDate.month, task.dueDate.day);
     // debugPrint('${task.name}: difference $difference, turningPointToDoSoon $turningPointToDoSoon, turningPointStillFine $turningPointStillFine, turningPointDoneRecently $turningPointDoneRecently');
-    if (difference <= 0) {
+    if (dueDay == today || dueDay.isBefore(today)) {
       return TaskStates.toDo;
     }
     if (difference <= turningPointToDoSoon) {
@@ -20,7 +22,7 @@ class TaskStateCalculator {
     if (difference <= turningPointStillFine) {
       return TaskStates.stillFine;
     }
-    if (difference <= turningPointDoneRecently) {
+    if (difference < turningPointDoneRecently) {
       return TaskStates.doneRecently;
     }
     return TaskStates.done;
