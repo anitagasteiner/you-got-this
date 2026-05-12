@@ -86,10 +86,28 @@ class StackedBar extends StatelessWidget {
         Positioned.fill(
           child: Center(
             child: IgnorePointer(
-              child: Text(
-                'Tasks nach Status anzeigen',
-                style: TextStyle(color: BaseColors.light),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.touch_app,
+                    size: 26,
+                    color: BaseColors.dark,
+                    semanticLabel: '',
+                  ),
+                  
+                    Text(
+                      'Tasks nach Status anzeigen',
+                      // textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  
+                ],
               ),
+              // child: Text(
+              //   'Tasks nach Status anzeigen',
+              //   style: TextStyle(color: BaseColors.dark),
+              // ),
             ),
           ),
         ),
